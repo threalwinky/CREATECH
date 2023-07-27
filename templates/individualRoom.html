@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Individual Room</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    </style>
+<body>
+    <script>
+        let audio = new Audio("{{ url_for('static', filename='music/lofi.mp3')}}")
+        $(document).ready(function () {
+            $("#check").change(function(){
+                var option = $("#check").val()
+                if (option == "on"){
+                    $("#check").val("off")
+                }
+                else{
+                    $("#check").val("on")
+                }
+                if (option == "on"){
+                    audio.loop = true
+                    audio.play()
+                }
+                else{
+                    audio.pause()
+                }
+            })
+        });
+        
+    </script>
+    lofi
+    <label class="switch">
+        <input type="checkbox" id="check">
+        <span class="slider round"></span>
+    </label>
+    <br>
+    pomodoro tasks
+    <div id="clock" style="display:inline;"></div>
+
+    <div id="tasks"></div>
+    <input type="text" style="width: 400px;" name="taskName" id="taskName" placeholder="What are you working on ? ">
+    <br>
+    <input type="number" style="width: 50px;" name="taskHour" id="taskHour" value="0"> hour(s)
+    <input type="number" style="width: 50px;" name="taskMinute" id="taskMinute" value="25"> minute(s)
+    <input type="number" style="width: 50px;" name="taskSecond" id="taskSecond" value="0"> second(s)
+    <button id="addButton">Add</button>
+    <script>
+      $("#taskName").keypress(function(){
+        if (event.key === "Enter") {
+          event.preventDefault();
+          $("#addButton").click()
+          $("#taskName").val('')
+        }
+      })
+      $(document).ready(function(){
+        $("#addButton").click(function(){
+          name = $("#taskName").val()
+          if (name == ''){
+            return
+          }
+          hour = $("#taskHour").val()
+          minute = $("#taskMinute").val()
+          second = $("#taskSecond").val()
+          innerHtml = '<div id="task' + "1" +'"><h3>' + name + '</h3><div style="display:inline;" id="clock' + "1" +'"></div></div>'
+          $("#tasks").append(innerHtml)
+        })
+      })
+    </script>
+    <script>
+      var s = 5
+      var x = setInterval(function(){
+        $("#clock1").empty()
+        $("#clock1").append(s)
+        if (s < 0){
+          console.log("Time out")
+        }
+        s = s - 1
+      }, 1000)
+    </script>
+</body>
+</html>

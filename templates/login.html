@@ -1,0 +1,56 @@
+{% extends "baseHome.html" %}
+
+{% block title %}CREATECH{% endblock %}
+
+{% block content %}
+
+    <section>
+        <div class="login-box">
+            <form method="post" class="action">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" name="username" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for m in messages %}
+                            {% if m[1] == 1 %}
+                            <P style="color: green">{{ m[0] }}</P>
+                            {% else %}
+                            <P style="color: red">{{ m }}</P>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <button class="button" type="submit">Log In</button>
+                <div class="register-link">
+                    <p class="register-link register-link-p">Don't have an account? </p>
+                    <a class="register-link register-link-a" href="signup">Sign up here !</a>
+                </div>
+                <div class="line"></div> <p style="display: inline; font-size: 13px;">Or</p>
+                <div class="line"></div>
+                <div>
+                    <span class="icon">
+                        <a href="/loginbygoogleaccount" style="text-decoration: none; font-size: 30px; margin-left: 45%; margin-top: 20px;" >
+                            <img src="{{ url_for('static', filename='img/googleLogo.svg')}}" width="30px">
+
+                        </a>
+                    </span>
+                </div>
+            </form>
+            
+
+        </div>
+    </section>
+
+
+<!-- <a href="signup">Sign Up</a> -->
+
+{% endblock %}
