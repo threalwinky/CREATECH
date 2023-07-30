@@ -1,20 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello {{ username }}</h1>
-    <a href="{{ 'logout '}}">Log Out</a>
-    <br>
-    <a href="createRoom">Create Room</a>
-    <br>
-    <a href="joinRoom">Join Room</a>
-    <br>
-    <a href="individualRoom">Join Single Room</a>
-    <br>
-    <a href="settingup">Setting Up</a>
-</body>
-</html>
+{% extends "base_main.html" %}
+
+{% block title %}Createen{% endblock %}
+
+{% block content %}
+<script>
+    let audio = new Audio("{{ url_for('static', filename='music/lofi.mp3')}}")
+    $(document).ready(function () {
+        $("#check").change(function(){
+            var option = $("#check").val()
+            if (option == "on"){
+                $("#check").val("off")
+            }
+            else{
+                $("#check").val("on")
+            }
+            if (option == "on"){
+                audio.loop = true
+                audio.play()
+            }
+            else{
+                audio.pause()
+            }
+        })
+    });
+    
+</script>
+lofi
+<label class="switch">
+    <input type="checkbox" id="check">
+    <span class="slider round"></span>
+</label>
+<br>
+pomodoro tasks
+<div id="clock" style="display:inline;"></div>
+
+<div id="tasks"></div>
+<input type="text" style="width: 400px;" name="taskName" id="taskName" placeholder="What are you working on ? ">
+<br>
+<input type="number" style="width: 50px;" name="taskHour" id="taskHour" value="0"> hour(s)
+<input type="number" style="width: 50px;" name="taskMinute" id="taskMinute" value="25"> minute(s)
+<input type="number" style="width: 50px;" name="taskSecond" id="taskSecond" value="0"> second(s)
+<button id="addButton">Add</button>
+<script>
+  $("#taskName").keypress(function(){
+    if (event.key === "Enter") {
+      event.preventDefault();
+      $("#addButton").click()
+      $("#taskName").val('')
+    }
+  })
+  $(document).ready(function(){
+    $("#addButton").click(function(){
+      name = $("#taskName").val()
+      if (name == ''){
+        return
+      }
+      hour = $("#taskHour").val()
+      minute = $("#taskMinute").val()
+      second = $("#taskSecond").val()
+      innerHtml = '<div id="task' + "1" +'"><h3>' + name + '</h3><div style="display:inline;" id="clock' + "1" +'"></div></div>'
+      $("#tasks").append(innerHtml)
+    })
+  })
+</script>
+<script>
+  var s = 5
+  var x = setInterval(function(){
+    $("#clock1").empty()
+    $("#clock1").append(s)
+    if (s < 0){
+      console.log("Time out")
+    }
+    s = s - 1
+  }, 1000)
+</script>
+        
+{% endblock %}

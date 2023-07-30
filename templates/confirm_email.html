@@ -1,0 +1,33 @@
+{% extends "base_home.html" %} {% block title %}Createen{% endblock %} {% block
+content %}
+
+<section>
+    <div class="login-box" style="align-items: center; justify-content: center; ">
+        <!-- Email have been sent Please check your mail for begin continue  -->
+        <form style="
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 0px;
+      ">
+            <img src="{{ url_for('static', filename='img/email-confirm.png')}}" width="200px" />
+            <br />
+            <p style="
+          font-weight: 1000;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+          font-size: x-large;
+          color: rgb(40, 57, 62);
+        ">
+                Please confirm your email address
+            </p>
+            <div class="line" style="width: 300px"></div>
+            <p class="normal">
+                Didn't receive an email ? 
+            <a href="/resendEmail" class="normal a">Resend</a>
+            </p>
+            <a href="/" class="normal a">Continue to log in</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,42 +1,6 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post">
-        <input type="text" placeholder="Username" name="username" required>
-        <br>
-        <input type="password" placeholder="Password" name="password" required>
-        <br>
-        <input type="password" placeholder="Repeat Password" name="rpassword" required>
-        <br>
-        <input type="text" placeholder="Email" name="email" required>
-        <br>
-        {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for m in messages %}
-                        {% if m[1] == 1 %}
-                        <P style="color: green">{{ m[0] }}</P>
-                        {% else %}
-                        <P style="color: red">{{ m }}</P>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        <button type="submit">Sign Up</button>
-    </form>
-    <a href="/">Log In</a>
-    <br>
-    <a href="loginbygoogleaccount">Log In by Google Account</a>
-</body>
-</html> -->
+{% extends "base_home.html" %}
 
-{% extends "baseHome.html" %}
-
-{% block title %}CREATECH{% endblock %}
+{% block title %}Createen{% endblock %}
 
 {% block content %}
 
@@ -81,23 +45,9 @@
                     <p class="register-link register-link-p">Already have an account? </p>
                     <a class="register-link register-link-a" href="/">Log in here !</a>
                 </div>
-                <!-- <div class="line"></div> <p style="display: inline; font-size: 13px;">Or</p>
-                <div class="line"></div> -->
-                <!-- <div>
-                    <span class="icon">
-                        <a href="/loginbygoogleaccount" style="text-decoration: none; font-size: 30px; margin-left: 45%; margin-top: 20px;" >
-                            <img src="{{ url_for('static', filename='img/googleLogo.svg')}}" width="30px">
-
-                        </a>
-                    </span>
-                </div> -->
             </form>
             
 
         </div>
     </section>
-
-
-<!-- <a href="signup">Sign Up</a> -->
-
 {% endblock %}

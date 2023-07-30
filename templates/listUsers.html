@@ -7,7 +7,7 @@
 </head>
 <body>
     {% for m in users %}
-        <P style="color: blue">{{ m }} : {{ m.username }} {{ m.room.split('####') }} {{ m.photoUrl }} {{ m.email }} {{ m.password}}</P>
+        <P style="color: blue">{{ m }} : {{ m.username }} {{ m.room.split('####') }} {{ m.photoUrl }} {{ m.email }} {{ m.password}} {{ m.photo_url}}</P>
     {% endfor %} 
 </body>
 </html>
