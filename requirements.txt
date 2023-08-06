@@ -27,7 +27,10 @@ six
 urllib3
 Werkzeug
 unidecode
+<<<<<<< HEAD
 nltk
 torch
 numpy
+=======
+>>>>>>> cc54e404e92afd2a63a2d1200648bf97c84c14f0
 datasets
