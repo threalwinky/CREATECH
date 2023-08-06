@@ -4,22 +4,55 @@
 
 {% block content %}
 
-Time : 
-<div id="time">
-    60
+<p style="font-size: x-large; display: inline;">Time : </p>
+<div id="time" style="display: inline;">
+  <p style="font-size: x-large; display: inline;">60</p>
 </div>
 
-Score
+<p style="font-size: x-large; display: inline;" >&nbsp;&nbsp;&nbsp;Score : </p>
 
-<p id="score">0</p>
+<p style="font-size: x-large; display: inline;" id="score">0</p>
 
 <div style="text-align: center;" >
-    <div id="question">
-        1. Đồi thuộc dạng địa hình núi già hay trẻ?
-    </div>
+
     
-    <input type="text" name="answer" id="answer">
-    <button class="answer_btn">Send</button>
+    <div class="container-fluid h-100" style="margin-top: 60px;">
+      <div class="row justify-content-center h-100">
+          <div class="col-md-8 col-xl-6 chat">
+              <div class="card">
+                  <div class="card-header msg_head">
+                      <div class="d-flex bd-highlight">
+                          <div class="user_info" style="color: black;">
+                              <span>Thi đấu</span>
+                              <p>Luyện tập đường lên đỉnh Olympia</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="question" class="card-body msg_card_body">
+                    <p style="font-size: x-large;">1. Đồi thuộc dạng địa hình núi già hay trẻ?</p>
+                      
+
+                  </div>
+                  <div class="card-footer">
+                      <form id="messageArea" class="input-group">
+                          <input type="text" id="answer" name="msg" placeholder="Type your message..."
+                              autocomplete="off" class="form-control type_msg" style="font-size: 15px;"
+                              required />
+
+                          <p class="input-group-text send_btn_record fa" onclick="record()" disabled
+                              style="background-color: #fdffca; border-color: #fdffca; text-align: end; font-size: 15px;">
+                              <br>&#xf130;</p>
+
+                          <div class="input-group-append">
+                              <p class="answer_btn input-group-text send_btn"
+                                  style="font-size: 15px;">Send</p>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="challenge_btn">
@@ -31,17 +64,16 @@ Score
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Timed out</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          Click <a href="/dashboard">here</a> to exit 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          
         </div>
       </div>
     </div>
@@ -58,7 +90,7 @@ Score
             return newArray;
           };
           
-        var timecnt = 10
+        var timecnt = 15
         var innerHtml = {
             "1. Đồi thuộc dạng địa hình núi già hay trẻ?": "nui gia",
             "2. What do you call a piece of cloth used as a symbol of a country oras a signal?": "flag",
@@ -74,7 +106,8 @@ Score
         
         var x = setInterval(function(){
             $("#time").empty()
-            $("#time").append(String(timecnt))
+            var t = '<p style="font-size: x-large; display: inline;">' + String(timecnt) + '</p>'
+            $("#time").append(t)
             if (timecnt == 0){
                 $("#challenge_btn").click()
                 
@@ -84,6 +117,7 @@ Score
                     room: '{{ data.id }}'
                 })
             }
+            
             timecnt--
         }, 1000)
         var cur_ques = 0
@@ -107,7 +141,7 @@ Score
                 cur_ques++
                 key = Object.keys(innerHtml)[cur_ques]
                 value = Object.values(innerHtml)[cur_ques]
-                a = key
+                a = '<p style="font-size: x-large;">' + key + '</p>'
                 $("#question").append(a)
             })
             

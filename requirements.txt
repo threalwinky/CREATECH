@@ -27,3 +27,7 @@ six
 urllib3
 Werkzeug
 unidecode
+nltk
+torch
+numpy
+datasets

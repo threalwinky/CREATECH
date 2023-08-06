@@ -40,11 +40,34 @@
     <h3>Room to join</h3>
     {% for m in all_rooms_attribute %}
     <div>
-        <a href="useRoom/{{m.id}}">{{ m }}</a>
+        <!-- <a href="useRoom/{{m.id}}">{{ m }}</a>
         <p style="display: inline">{{ m.name }}</p>
         <p style="display: inline">{{ m.description }}</p>
         <p style="display: inline">{{ m.color }}</p>
-        <button id="rm{{ m.id }}">Remove</button>
+        <button id="rm{{ m.id }}">Remove</button> -->
+
+        <div class="card card-box-top" style="background-color: rgb(153, 221, 242); width: 150px; height: 150px;" ondblclick="window.location='/useRoom/{{m.id}}';">
+                        
+            <div class="card-body" >
+                <p class="card-title-main" style="font-size: large; display: inline">{{ m.name }}
+                    <div class="dropdown" style="display: inline; float: right;">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="">
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          
+                          <a class="dropdown-item" href="#">Change</a>
+                          <a id="rm{{ m.id }}" class="dropdown-item" href="#">Delete</a>
+                          
+                        </div>
+                      </div>
+                </p>
+                <p class="card-text"
+                    style="font-family: 'Courier New', Courier, monospace; font-weight: 800;">{{ m.description }}</p>
+                    
+                
+                </div>
+        </div>
+
     </div>
     <script type="text/javascript">
         $(document).ready(function () {

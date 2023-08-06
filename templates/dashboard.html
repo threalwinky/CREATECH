@@ -22,7 +22,7 @@
 
 
 <body>
-    
+
     <header class="header" style="padding-top : 5px; padding-bottom: 5px;">
         <script>
 
@@ -555,45 +555,72 @@
     <!-- 
 
 </section> -->
-<div style="margin-left: 80px;">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Launch demo modal
-    </button>
+    <div style="margin-left: 80px;">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Sach toan 10
+        </button>
 
-    <!-- Modal -->
-    
-    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="font-size: x-large;">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="viewer" style="width: auto; height: 1000px;"></div>
-                    
-                    <script type="text/javascript" src="https://cloudpdf.io/viewer.min.js"></script>
-                    <script>
-                        const config = {
-                            documentId: '2ac56ea7-23a0-473d-ab39-9b5f5b75aa0a',
-                            darkMode: false,
-                            token: '' //add your server side generated security token or change your document permission to public
-                        };
-                        CloudPDF(config, document.getElementById('viewer')).then((instance) => {
+        <!-- Modal -->
 
-                        });
-                    </script>
+        <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: x-large;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="viewer" style="width: auto; height: 1000px;"></div>
+
+                        <script type="text/javascript" src="https://cloudpdf.io/viewer.min.js"></script>
+                        <script>
+                            const config = {
+                                documentId: '2ac56ea7-23a0-473d-ab39-9b5f5b75aa0a',
+                                darkMode: false,
+                                token: '' //add your server side generated security token or change your document permission to public
+                            };
+                            CloudPDF(config, document.getElementById('viewer')).then((instance) => {
+
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+            Random math exercises
+        </button>
+        <div class="modal fade bd-example-modal-lg" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: x-large;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% for m in range(0, 5)%}
+                            <p style="font-size: x-large;">{{ l[m][0] }} &nbsp;</p> 
+                            <button class="btn" id="show{{m}}">Answer</button> <p id="ans{{m}}" style="font-size: x-large;"></p>
+                            <script>
+                                $("#show{{m}}").click(function(){
+                                    console.log("{{ l[m][1] }}")
+                                    $("#ans{{m}}").text("{{ l[m][1] }}")
+                                })
+                            </script>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
 
-
-    <div id="accordion" style="width: auto; margin-right: 2%;">
+        </div>
+        <!-- <div id="accordion" style="width: auto; margin-right: 2%;">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
@@ -725,9 +752,9 @@
             </div>
         </div>
     </div>
-    </div>
+    </div> -->
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
