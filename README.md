@@ -4,7 +4,6 @@ python -m venv .venv
 
 pip install -r requirements.txt
 
-<<<<<<< HEAD
 python train.py
 
 python punkt.py
