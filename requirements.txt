@@ -27,3 +27,4 @@ six
 urllib3
 Werkzeug
 unidecode
+datasets
