@@ -1,0 +1,120 @@
+{% extends "base_main.html" %}
+
+{% block title %}Createen{% endblock %}
+
+{% block content %}
+
+Time : 
+<div id="time">
+    60
+</div>
+
+Score
+
+<p id="score">0</p>
+
+<div style="text-align: center;" >
+    <div id="question">
+        1. Đồi thuộc dạng địa hình núi già hay trẻ?
+    </div>
+    
+    <input type="text" name="answer" id="answer">
+    <button class="answer_btn">Send</button>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="challenge_btn">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    $(document).ready(function(){
+        const shuffleArray = (array) => {
+            // create a copy of the array so that the original array is not mutated
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+          };
+          
+        var timecnt = 10
+        var innerHtml = {
+            "1. Đồi thuộc dạng địa hình núi già hay trẻ?": "nui gia",
+            "2. What do you call a piece of cloth used as a symbol of a country oras a signal?": "flag",
+            "3. World Cup 2018 được tổ chức ở nước nào?": "nga",
+            "4. Trẻ em từ 2-6 tuổi có bao nhiêu răng sữa?": "20",
+            "5. Trong truyền thuyết bà Lê Chân nữ tướng tiên phong của Hai Bà Trưng xưa kia đã dùng môn thể thao nào để tuyển binh, tuyển tướng?": "dau vat",
+            "6. ... Là loại than có khả năng hấp phụ mạnh, được dùng sản xuất mặt nạ phòng độc? ": "than hoat tinh",
+            "7. Trên la bàn, kim chỉ hướng đông hợp với kim chỉ hướng nam 1 góc bao nhiêu độ? ": "90 do",
+            "8. Trong công nghệ sản xuất máy lạnh trước đây hợp chất nào của nitơ mà dạng lỏng của nó được sử dụng làm chất gây lạnh?": "nh3",
+            "9. Điểm phân cách giữa cung lồi và cung lõm của đồ thị hàm số được gọi là....": "diem uon",
+            "10. Khí quyển là một lớp khí bao bọc xung quanh một thiên thể có khối lượng đủ lớn và nó được giữ lại bởi..... của thiên thể đó.": "trong luc",
+        }
+        
+        var x = setInterval(function(){
+            $("#time").empty()
+            $("#time").append(String(timecnt))
+            if (timecnt == 0){
+                $("#challenge_btn").click()
+                
+                $.post('/res',{
+                    score: score,
+                    name: '{{ name }}',
+                    room: '{{ data.id }}'
+                })
+            }
+            timecnt--
+        }, 1000)
+        var cur_ques = 0
+        var score = 0
+        var key = Object.keys(innerHtml)[0]
+        var value = Object.values(innerHtml)[cur_ques]
+        $(".answer_btn").click(function(){
+            answer = $("#answer").val()
+            $.post('/change_answer', {
+                answer : answer
+            }).done(function(data){
+                answer = data
+                $("#answer").val('')
+                $("#question").empty()
+                if (answer == value){
+                    console.log([answer, value])
+                    score += 10
+                }
+                
+                $("#score").text(score)
+                cur_ques++
+                key = Object.keys(innerHtml)[cur_ques]
+                value = Object.values(innerHtml)[cur_ques]
+                a = key
+                $("#question").append(a)
+            })
+            
+            
+        })
+    })
+</script>
+
+
+{% endblock %}

@@ -1,6 +1,7 @@
 flask
 flask-sqlalchemy
 flask-mail
+flask-socketio
 python-dotenv
 flask-login
 flask_oauthlib
@@ -25,3 +26,4 @@ rsa
 six
 urllib3
 Werkzeug
+unidecode

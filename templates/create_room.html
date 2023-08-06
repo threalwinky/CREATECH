@@ -1,14 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Room</title>
-</head>
-<body>
-    <form method="post">
-        <input type="text" placeholder="Room name" name="roomname">
+{% extends "base_main.html" %} {% block title %}Createen{% endblock %} {% block
+content %}
+
+
+
+<div class="inplace"
+    style="margin-left: 10%; margin-top: 5%; margin-right: 10%; font-size: x-large; background-color: #ffecb5; padding: 10px; border-radius: 10px;">
+    <p style="color: black; margin-left: 44%; font-weight: 700;">Create Room</p>
+    
+    <!-- <form method="post">
+        <input class="input" type="text" placeholder="Room name" name="roomname">
         <button type="submit">Create</button>
-    </form>
-</body>
-</html>
+    </form> -->
+    
+    <div>
+        <span class="input-group-text" style="font-size: x-large;">Color
+            &nbsp;
+            <select class="form-select" aria-label="Default select example" id="room_color" style="font-size: x-large;">
+                <option value="1">Red</option>
+                <option value="2">Blue</option>
+                <option value="3">Orange</option>
+                <option value="4">Purple</option>
+                <option value="5">Yellow</option>
+            </select>
+        </span>
+        <br>
+        <div class="form-group">
+
+            <textarea placeholder="Description" class="form-control form_group" id="room_description" rows="10"
+                style="height: 300px;border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;"></textarea>
+        </div>
+        <br>
+        <div class="input-group mb-3"
+            style="border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;">
+            <input type="text" class="form-control form_group" placeholder="Name" aria-label="Recipient's username"
+                aria-describedby="basic-addon2" id="room_name" style="border-radius: 10px;" required>
+            <div class="input-group-append">
+                <span class="input-group-text"
+                    style="border-radius: 10px;background-color: #ffc107; width: 100px; height: 45px; text-align: center; font-size: x-large;"
+                    id="group_create">Create</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <div style="position: absolute;">hello</div>
+    <div style="margin-left: 50%;">world</div> -->
+
+<script>
+    $("#group_create").click(function(){
+        room_color = $("#room_color").val()
+        room_description = $("#room_description").val()
+        room_name = $("#room_name").val()
+        console.log([room_color, room_description, room_name])
+        $.post("create_room", {
+            room_color : room_color,
+            room_description : room_description,
+            room_name : room_name
+        })
+        $("#room_color").val(1)
+        $("#room_description").val('')
+        $("#room_name").val('')
+        
+    })
+</script>
+
+<style>
+    .inplace {
+        color: red;
+    }
+</style>
+{% endblock %}

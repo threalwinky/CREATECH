@@ -3,104 +3,548 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
+    <title>Createen</title>
     <link rel="shortcut icon" style="border-radius: 50px;"
         href="{{ url_for('static', filename='img/createenLogo.png') }} " />
-    <!-- <script src="https://kit.fontawesome.com/6adc67ffbe.js" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- font awesome cdn link  -->
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- custom css file link  -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_main.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_main_2.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
+        integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav"
-        style="background-color: rgba(248, 232, 109, 0.847);">
-        <!-- <img src="{{ url_for('static', filename='img/banner.png')}}" width="100px" style="margin-left: 30px;"> -->
-        <!-- <a href="#" class="previous round aa" style="margin-left: 50px;">&#8249;</a> -->
-        <div class="container" style="margin-left: 0px;">
-            <a class="navbar-brand" href="{{ url_for('static', filename='img/createenLogo.png') }}"
-                style="padding-left: 0%;">
-                <img src="{{ url_for('static', filename='img/createenLogo.png')}}" width="30px"
-                    style="margin-left: 30px;">
-                <!-- <img src="{{ url_for('static', filename='img/favicon4.png') }}" alt="Emilia" width="50px"> -->
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <header class="header" style="padding-top : 5px; padding-bottom: 30px;">
+        <script>
+
+            let audio = new Audio("{{ url_for('static', filename='music/lofi.mp3')}}");
+            $(document).ready(function () {
+                $("#check").change(function () {
+                    var option = $("#check").val();
+                    if (option == "on") {
+                        $("#check").val("off");
+                    } else {
+                        $("#check").val("on");
+                    }
+                    if (option == "on") {
+                        audio.loop = true;
+                        audio.play();
+                    } else {
+                        audio.pause();
+                    }
+                });
+
+            });
+
+        </script>
+        <section class="flex" style="display: inline; padding-left: 70px;">
+
+            <!-- <a href="home.html" class="logo">Educa.</a> -->
+
+            <button id="user-btn" class="btn"
+                style="display: inline; margin-left: 5px; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px; width: 40px; height: 40px; float:right; margin-right: 10px;">
+
+                <div class="fas fa-user" style="font-size: 20px;"></div>
+
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-black aa" href="/">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-black aa" href="/create_room">Create Room</a>
-                    </li>
+            <button id="toggle-btn" class="btn"
+                style="display: inline; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px; width: 40px; height: 40px; margin-left: 2px; display: none; ">
 
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-black aa" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Contact
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-black text-capitalize"
-                                href="https://www.facebook.com/winky.no.sl33p">Facebook</a>
-                            <a class="dropdown-item text-black text-capitalize"
-                                href="https://www.linkedin.com/in/vu-vo-winky-682203260/">Linkedin</a>
-                            <a class="dropdown-item text-black text-capitalize"
-                                href="https://mail.google.com/mail/u/0/?source=mailto&to=voquangvu09112006@gmail.com&fs=1&tf=cm">Gmail</a>
-                        </div>
-                    </li> -->
-                    <li class="nav-item active">
-                        <a class="nav-link text-black aa" href="/join_room">Join Room</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-black aa" href="{{ 'entertainment' }}">Entertainment</a>
-                    </li>
-                </ul>
+                <div style="font-size: 20px;"></div>
 
-                </form>
-                </ul>
+            </button>
 
-            </div>
-            <li style="list-style-type: none; margin-right: -100px;" >
-                <a class="nav-link dropdown-toggle aa" href="#" id="navbarDropdown2" role="button"
-                    
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-transform: capitalize;">
-                    <img src="{{ url_for('static', filename='photo_url/Users/' + photo_url) }}" style="width: 30px;" class="avatar-img rounded-circle" alt="...">
-                    Hello, {{ name }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <!-- <a class="dropdown-item text-black text-capitalize"
-                        href="/">Dashboard</a> -->
-                    <a class="dropdown-item text-black text-capitalize"
-                        href="/setting_up">Setting</a>
-                    <a class="dropdown-item text-black text-capitalize"
-                        href="/log_out">Log Out</a>
+            <div class="profile" style="border-radius: 20px;">
+
+                <img src="{{ url_for('static', filename='photo_url/Users/' + photo_url) }}" class="image" alt="">
+                <h3 class="name">{{ name }}</h3>
+                <!-- <p class="role">studen</p> -->
+
+                <a href="signup" class="btn"
+                    style="color: black; width: 100%; background-color: aquamarine; padding: 15px; font-size: medium; font-weight: 600;">Sign
+                    Up</a>
+                <div class="flex-btn">
+                    <a style="text-decoration: none; " href="setting_up" class="option-btn">Setting</a>
+                    <a style="text-decoration: none;" href="log_out" class="option-btn">Log Out</a>
                 </div>
-            </li>
+            </div>
+
+        </section>
+
+    </header>
+
+    <div class="modal fade" id="clock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Pomodoro Timer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-clock">
+                        <div class="circular-progress">
+                            <span class="progress-value">
+                                <p id="clock2">25:00</p>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="clock-msg">
+
+                    </div>
+                    <div class="input-group mb-3"
+                        style="border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;">
+                        <span class="input-group-text"
+                            style="height: 35px; background-color: #e8e8e8; width: 75px; border-radius: 10px; height: 23px;">Minutes</span>
+                        <input type="number" class="form-control" value="25" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2" id="minute_change">
+                        <span class="input-group-text"
+                            style="height: 35px; background-color: #e8e8e8; width: 80px; height: 23px;">Seconds</span>
+                        <input type="number" class="form-control" value="00" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2" id="second_change">
+                        <span class="input-group-text"
+                            style="height: 35px; background-color: #ffc107; width: 80px; height: 23px;"
+                            id="time_change">Change</span>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </nav>
-    <br><br><br>
-    {% block content %} {% endblock %}
+    </div>
+
     <script>
-        
+        var cnt = 0
+        var choose = 0
+        var minute = 25
+        var second = 0
+        var sleep_minute = 5
+        var sleep_second = 0
+        var total_second = minute * 60
+        let progressStartValue = 0, progressEndValue = 100
+        $(document).ready(function () {
+            $("#time_change").click(function () {
+
+                minute = $("#minute_change").val()
+                second = $("#second_change").val()
+                total_second = minute * 60 + second
+                progressEndValue = 100
+                //$("#minute_change").val()
+                //$("#second_change").val()
+            })
+        })
+
+        var tmp = setInterval(function () {
+
+            $("#clock1").empty();
+            $("#clock2").empty();
+            var minute_str = String(minute)
+            var second_str = String(second)
+            if (minute_str.length == 1) {
+                minute_str = "0" + minute_str
+            }
+            if (second_str.length == 1) {
+                second_str = "0" + second_str
+            }
+            let circularProgress = document.querySelector(".circular-progress"),
+                progressValue = document.querySelector(".progress-value");
+
+            progressEndValue -= (100 / total_second);
+            progressValue.textContent = minute_str + ":" + second_str
+            if (choose == 0) {
+                circularProgress.style.background = `conic-gradient(#ffc107 ${progressEndValue * 3.6}deg, #ededed 0deg)`
+                progressValue.style.color = "#ffc107"
+            }
+            else {
+                circularProgress.style.background = `conic-gradient(#33d6ff ${progressEndValue * 3.6}deg, #ededed 0deg)`
+                progressValue.style.color = "#33d6ff"
+            }
+            if (progressStartValue == progressEndValue) {
+                clearInterval(progress);
+            }
+
+            $("#clock1").append(minute_str + ":" + second_str);
+            $("#clock2").append(minute_str + ":" + second_str);
+            if (second == 0) {
+                second = 60
+                minute -= 1
+            }
+            second -= 1
+
+            if (second == 0 && minute == 0) {
+                minute = sleep_minute
+                second = sleep_second
+                total_second = minute * 60 + second
+                progressEndValue = 100
+                if (sleep_minute == 5 || sleep_minute == 15) {
+                    sleep_minute = 25
+                }
+                else {
+                    if (cnt == 2) {
+                        cnt = 0
+                        sleep_minute = 15
+                    }
+                    else {
+                        sleep_minute = 5
+                        cnt++
+                    }
+                }
+                if (choose == 0) {
+                    choose = 1
+                    $("#clock-btn").click()
+                    innerHtml = "<p style='align-items: center; justify-content: center; text-align: center;'>Timed out for learning. Better doing some fun activities <a href='/entertainment' style='text-decoration: none; '>here</a></p>"
+                    $("#clock-msg").empty()
+                    $("#clock-msg").append(innerHtml)
+                }
+                else {
+                    $("#clock-msg").empty()
+                    choose = 0
+                }
+            }
+        }, 1000);
     </script>
 
-    <!-- <img src="{{ url_for('static', filename='img/googleLogo.svg')}}"> -->
+    <div class="modal fade" id="task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Tasks</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3"
+                        style="border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;">
+                        <input type="text" class="form-control" placeholder="What do you want to do ?"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" id="task_name"
+                            style="border-radius: 10px;" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text"
+                                style="height: 35px; background-color: #ffc107; width: 100px; height: 23px; text-align: center;"
+                                id="task_add">Add</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="tasks" class="modal-body">
+                    <script>
+                        var task_count = 0
+                        var task_done = 0
+                        var tasks = []
+                        function inner_html_tag(task_name, task_count) {
+                            var x = `
+                                <div class="alert alert-secondary" role="alert">
+                                    <input id="task_check_`+ task_count + `" type="checkbox" />
+                                    <p style="display: inline;">`+ task_name + `</p>
+                                    <span id="task_`+ task_count + `" class="bi bi-x-circle" style="float: right;"></span>
+                                    
+                                </div>
+                                <script>
+                                    $("#task_` + task_count + `").click(function(){
+                                        for (var i = 0; i < tasks.length; i++){
+                                            
+                                            if (tasks[i] == "` + task_name + `"){
+                                                tasks.splice(i, 1);
+                                                console.log(tasks)
+                                            }
+                                        }
+                                        reload_task()
+                                    })
+                                    $("#task_check_` + task_count + `").click(function(){
+                                        check = $("#task_check_` + task_count + `").val()
+                                        if ($("#task_check_` + task_count + `").is(":checked")){
+                                            task_done++
+                                            $("#task_check_` + task_count + `").check = false
+                                        }
+                                        else{
+                                            task_done--
+                                            $("#task_check_` + task_count + `").check = true
+                                        }
+                                        console.log($("#task_check_` + task_count + `").is(":checked"))
+                                        $("#task1").text(task_done + "/" + tasks.length)
+                                    })
+                                <\/script>
+                                `
+                            return x;
+                        }
+                        function reload_task() {
+                            var cnt = 0
+                            $("#tasks").empty()
+                            for (const x of tasks) {
+                                $("#tasks").append(inner_html_tag(x, cnt++))
+                            }
+                            $("#task_name").val("")
+                            $("#task1").text(task_done + "/" + tasks.length)
+                        }
+                        $(document).ready(function () {
+
+
+
+                            $("#task_add").click(function () {
+
+                                var task_name = $("#task_name").val()
+                                if (task_name != '') {
+                                    tasks.push(task_name)
+                                    task_count++
+
+                                }
+
+                                reload_task()
+                            })
+                            $("#task_name").keyup(function (event) {
+                                if (event.keyCode == 13) {
+                                    $("#task_add").click();
+                                }
+                            });
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span class="input-group-text">Color
+                        &nbsp;
+                        <select class="form-select" aria-label="Default select example" id="note_color">
+
+                            <option value="1">Red</option>
+                            <option value="2">Blue</option>
+                            <option value="3">Orange</option>
+                            <option value="4">Purple</option>
+                            <option value="5">Yellow</option>
+                        </select>
+                    </span>
+                    <br>
+                    <div class="form-group">
+
+                        <textarea placeholder="Content" class="form-control" id="note_content" rows="10"
+                            style="height: 300px;border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;"></textarea>
+                    </div>
+                    <br>
+                    <div class="input-group mb-3"
+                        style="border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px;">
+                        <input type="text" class="form-control" placeholder="Description"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" id="note_name"
+                            style="border-radius: 10px;" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text"
+                                style="height: 35px; background-color: #ffc107; width: 100px; height: 23px; text-align: center;"
+                                id="note_add">Add</span>
+                        </div>
+                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle2">All notes</h5>
+                    </div>
+                    <div id="notes">
+                        <script>
+                            var notes = []
+                            function inner_html_tag_note(note_name, note_content, note_color, note_count) {
+                                var x =
+                                    `<div class="card card-box-top" style="background-color: rgb(153, 221, 242); width: 380px; height: fit-content;">
+                        
+                                <div class="card-body" >
+                                    <p class="card-title-main" style="font-size: large; display: inline">`+ note_name + `
+                                        <div class="dropdown" style="display: inline; float: right;">
+                                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                              
+                                              <a class="dropdown-item" href="#">Change</a>
+                                              <a id="note_`+ note_count + `" class="dropdown-item" href="#">Delete</a>
+                                              
+                                            </div>
+                                          </div>
+                                    </p>
+                                    <p class="card-text"
+                                        style="font-family: 'Courier New', Courier, monospace; font-weight: 800;">` + note_content + `</p>
+                                        
+                                    
+                                    </div>
+                            </div>
+                            
+                                <script>
+                                    $("#note_` + note_count + `").click(function(){
+                                        for (var i = 0; i < notes.length; i++){
+                                            
+                                            if (notes[i][0] == "` + note_name + `"){
+                                                notes.splice(i, 1);
+                                                console.log(notes)
+                                            }
+                                        }
+                                        reload_note()
+                                    })
+                                    
+                                <\/script>`
+                                return x;
+                            }
+                            function reload_note() {
+                                var cnt = 0
+                                $("#notes").empty()
+
+                                for (const x of notes) {
+                                    $("#notes").append(inner_html_tag_note(x[0], x[1], x[2], cnt++))
+                                }
+                                $("#note_name").val("")
+                                $("#note_content").val("")
+                                $("#note_color").val("1")
+                                console.log(notes)
+                                $("#task1").text(task_done + "/" + tasks.length)
+                            }
+                            $(document).ready(function () {
+
+                                $("#note_add").click(function () {
+
+                                    var note_name = $("#note_name").val()
+                                    var note_content = $("#note_content").val()
+                                    var note_color = $("#note_color").val()
+                                    notes.push([note_name, note_content, note_color])
+
+                                    reload_note()
+                                })
+                                $("#note_name").keyup(function (event) {
+                                    if (event.keyCode == 13) {
+                                        $("#note_add").click();
+                                    }
+                                });
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="music" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Music</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    lofi
+                    <label class="switch">
+                        <input type="checkbox" id="check" />
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <br>
+                    lofi
+                    <label class="switch">
+                        <input type="checkbox" id="check" />
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <br>
+                    lofi
+                    <label class="switch">
+                        <input type="checkbox" id="check" />
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="side-bar" id="side-bar-1" style=" padding-top: 10%;">
+
+        <nav class="navbar1">
+            <a style="text-decoration: none;" href="/"><i class="fas fa-home"></i><span id="home_span"></span></a>
+            <a style="text-decoration: none;" href="create_room"><i class="fas fa-school"> </i><span
+                    id="create_room_span"></span></a>
+            <a style="text-decoration: none;" href="join_room"><i class="fas fa-chalkboard-user"></i><span
+                    id="join_room_span"></span></a>
+            <a style="text-decoration: none;" href="entertainment"><i class="fas fa-gamepad"></i><span
+                    id="entertainment_span"></span></a>
+            <a style="text-decoration: none;" href="chat"><i class="fas  fa-comment"></i><span
+                    id="chat_span"></span></a>
+        </nav>
+
+    </div>
+
+    <script>
+        var cnt = 0
+        $("#side-bar-1").hover(function () {
+            if (cnt % 2 == 0) {
+                $("#home_span").text("Home")
+                $("#create_room_span").text("Create Room")
+                $("#join_room_span").text("Join Room")
+                $("#entertainment_span").text("Entertainment")
+                $("#chat_span").text("Chat")
+                var profile_html = `
+                <img src="{{ url_for('static', filename='photo_url/Users/' + photo_url) }}" class="image" alt="">
+                <h3 class="name">shaikh anas</h3>
+                <p class="role">studen</p>
+            `
+            }
+            else {
+                $("#home_span").text("")
+                $("#create_room_span").text("")
+                $("#join_room_span").text("")
+                $("#entertainment_span").text("")
+                $("#chat_span").text("")
+
+            }
+            cnt++
+
+        })
+    </script>
+
+    </section>
+    <div style="margin-left: 80px;">
+        {% block content %} {% endblock %}
+    </div>
+
+
+
+
+    <!-- custom js file link  -->
+    <script>
+        toggleBtn.classList.replace('fa-sun', 'fa-moon');
+        body.classList.add('dark');
+        localStorage.setItem('dark-mode', 'enabled');
+    </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 
 </html>

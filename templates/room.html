@@ -1,22 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-</head>
-<body>
-    <h1>{{ data.participants }}</h1>
-    
-    <div id="messages"></div>
-    <script>
-        console.log('{{data.participants}}')
-        $("document").ready(function(){
-            $("#messages").append("<h1 style=\"color:red;\">123</h1>")
-        })
+{% extends "base_main.html" %} {% block title %}Createen{% endblock %} {% block
+content %}
+
+
+<h1>{{ data.participants }}</h1>
+<h1>{{ data.id }}</h1>
+<h1>{{ data.password }}</h1>
+<h1>{{ room_link }}</h1>
+
+
+
+<h1>chat</h1>
+<div class="container-fluid h-100" style="margin-top: 60px;">
+    <div class="row justify-content-center h-100">
+        <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="user_info" style="color: black;">
+                            <span>Chat chung</span>
+                            <p>Tám đủ loại chuyện</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="messages" class="card-body msg_card_body">
+                    {% for m in chat %}
+                    <p style="color: blue">{{ m.split("^^^^") }}</p>
+                    {% endfor %}
+                </div>
+                <div class="card-footer">
+                    <form id="messageArea" class="input-group">
+                        <input type="text" id="message" name="msg" placeholder="Type your message..." autocomplete="off"
+                            class="form-control type_msg" required />
+
+                        <p class="input-group-text send_btn_record fa" onclick="record()" disabled
+                            style="background-color: #fdffca; border-color: #fdffca; text-align: end;"><br>&#xf130;</p>
+
+                        <div class="input-group-append">
+                            <button type="submit" id="send_btn" class="input-group-text send_btn">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+
+<div style="text-align: center;">
+    <h1>Last challenge ranking</h1>
+
+    {% for i in range(3) %}
+        Top {{ i+1}}
+        <img src="{{ url_for('static', filename='photo_url/Users/'+ranking[i][2])}}" style="width: 40px;">
+        <p style="text-align: center;">{{ ranking[i][3] }} : {{ranking[i][1]}} scores</p>
+    {% endfor %}
+
+    {% if user_id == data.host %}
+    <h1>
+        Start a challenge
         
-    </script>
+    </h1>
+    <button id="challenge_btn" class="btn" style="background-color: rgb(255, 255, 206);">Start</button>
+    {% endif %}
+    <div id="challenge_count_down">
+    
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" data-toggle="modal" data-target="#exampleModal" id="challenge_notification_btn">
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Start challenge</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          To start challenge, join the link : <a href="/challenge/{{ data.id }}">here</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<script>
+
+    $(document).ready(function () {
+        var socket = io.connect("http://127.0.0.1:5000/")
+
+        socket.on('message', function (data) {
+            if (data[0] == 'challenge'){
+                if (data[1] == "{{ data.id }}") {
+                    var timecnt = 2
+                    var x = setInterval(function(){
+                        if (timecnt >= 0){
+                        $("#challenge_count_down").empty()
+                        $("#challenge_count_down").append(String(timecnt))
+                        
+                        timecnt--
+                        }
+                        else if (timecnt == -1){
+                            
+                            $("#challenge_notification_btn").click()
+                            timecnt--
+                        }
+                    }, 1000)
+                    
+                }
+            }
+            else{
+                if (data[0] == "{{ data.id }}") {
+                    $("#messages").append('<p style="color: blue;">' + data[2] + '</p>')
+                }
+            }
+
+        })
+
+        $("#send_btn").click(function () {
+            message = $("#message").val()
+            $("#messages").append('123')
+            socket.send("{{ data.id }}" + "$$$$" + "{{ user_id }}" + "$$$$" + message)
+            $('#message').val('')
+        })
+        $("#challenge_btn").click(function(){
+            socket.send("challenge" + "$$$$" + "{{ data.id }}")
+        })
+    })
+
+</script>
+
+
 </body>
+
 </html>
+
+{% endblock %}

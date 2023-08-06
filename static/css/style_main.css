@@ -1,4 +1,3 @@
-@charset "UTF-8";
 
 body {
     background-color: rgba(217, 219, 206, 255);
@@ -559,4 +558,74 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.c-body{
+    width: 300px;
+    margin-left: 20%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-clock{
+    display: flex;
+    width: 420px;
+    border-radius: 8px;
+    flex-direction: column;
+    margin-left: 25%;
+}
+
+
+.circular-progress{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: conic-gradient(rgba(248, 232, 109, 0.847) 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 210px;
+    width: 210px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.progress-value{
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: rgba(248, 232, 109, 0.847);
+}
+.text{
+    font-size: 30px;
+    font-weight: 500;
+    color: #606060;
+}
+
+@media only screen and (max-width: 46.1875em) {
+    .container-clock{
+        display: flex;
+        width: 420px;
+        border-radius: 8px;
+        flex-direction: column;
+        margin-left: 18%;
+    }
+}
+
+.inplace::placeholder{
+    font: 100px;
+}
+
+.form_group::placeholder{
+    font-size: larger;
 }
