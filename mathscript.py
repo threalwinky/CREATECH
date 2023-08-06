@@ -6,4 +6,4 @@ class MathScriptCreaTeen:
     def __init__(self):
         pass
     def generate_problem():
-        return MathScriptCreaTeen.dataset[random.randint()]
+        return MathScriptCreaTeen.dataset[random.randint(0,2000000)]
