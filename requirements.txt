@@ -30,8 +30,4 @@ unidecode
 nltk
 torch
 numpy
-<<<<<<< HEAD
 datasets
-=======
-datasets
->>>>>>> 17fad26902d5d0f91c4fcb48619f6fe282365fcf
