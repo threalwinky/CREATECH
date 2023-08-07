@@ -30,3 +30,4 @@ unidecode
 nltk
 torch
 numpy
+datasets
