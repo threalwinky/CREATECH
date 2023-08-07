@@ -14,4 +14,9 @@ go to http://127.0.0.1:5000/ in any web browser
 
 python main.py
 
+(if log in by google have a problem such as : InvalidValue
+google.auth.exceptions.InvalidValue: Token used too early, < Check that your computer's clock is set correctly.
+Go to setting in windows and date time setting turn off and on set time automatically)
+
+
 Enjoy !!!!
