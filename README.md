@@ -1,3 +1,5 @@
+use command promt in this folder
+
 python -m venv .venv
 
 .venv\Scripts\activate
