@@ -31,3 +31,4 @@ nltk
 torch
 numpy
 datasets
+qrcode
