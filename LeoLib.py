@@ -26,4 +26,7 @@ CallLib = LeoLib
 # a = random.randrange(1,10**4)
 # print(CallLib.Algebra__linear_2d(a))
 print(CallLib.Algebra__linear_2d())
-LeoLib.MakeQR("https://youtube.com/").show()
+try:
+    LeoLib.MakeQR("https://youtube.com/").show()
+except:
+    break
