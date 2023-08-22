@@ -11,7 +11,7 @@ import random
 from vector import genNum
 import math
 
-def ProgressionE(t=0):
+def ProgressionE(t=random.randrange(0,5)):
     task = progressionE[str(t)]
     if t == 0:
         s, e = genNum([1,10]), genNum([12,999])
