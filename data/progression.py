@@ -42,3 +42,23 @@ def ProgressionE(t=random.randrange(0,5)):
         task[0] = task[0].format(s,s+k, s+2*k, s+(n-1)*k)
         task[1] += str(n)
     return task
+
+progressionM = {
+    "0":[["Người ta viết {w} thành một dãy, mỗi chữ cái được viết bằng 1 màu theo thứ tự {c1}, {c2}, {c3}. Hỏi chữ thứ {n} là chữ gì, màu gì?", "Chữ {c}, Màu {m}"]
+    , ["Một người viết liên tiếp nhóm chữ {w} thành dãy {w} {w}... \n Chữ cái thứ 1000 trong dãy là chữ gì?", "Chữ {c}"]]
+}
+Mdata = {
+    "0":[["TOÁN LỚP 10","TOÁN HỌC","Pythagoras","KHOA HỌC",
+    "HỌC ĐỂ CỐNG HIẾN", "TỔ QUỐC VIỆT NAM"],
+    ["đỏ", "tím", "vàng", "hồng", "xanh lam", "xanh trời",
+     "xanh lá", "xanh biển", "trắng", "cam", "kim"]]
+}
+
+def ProgressionM(t=0):
+    task = random.choice(progressionM[str(t)])
+    if t == 0:
+        word, color = random.choice(Mdata["0"][0]), random.choices(Mdata["0"][1], k=3)
+        n = genNum([10,22000])
+        task[0].format(w=word, c1=color[0],c2=color[1],c3=color[2], n = n)
+        task[1].format(c=word[n%len(word)-1],m=color[n%3-1])
+    return task
