@@ -1,10 +1,10 @@
 progressionE = {
     "0":["Viết các số chẵn bắt đầu từ {}. Số cuối cùng là {}. Dãy số có bao nhiêu số?", " số"],
     "1":["Cho dãy số {s}, {s1}, {s2}, {s3}, ..., {e}. Hỏi dãy số có bao nhiêu số hạng?", " số"],
-    "2":["Cho dãy số: {}, {}, {}, {}, {}, ... \nTìm số hạng thứ {}.", ""],
+    "2":["Cho dãy số: {}, {}, {}, ... \nTìm số hạng thứ {} của dãy.", ""],
     "3":["Tính nhanh tổng sau: {} + {} + {} + ... + {}", ""],
     "4":["Tính nhanh các tổng sau: /n{} + {} + {} + ... + {} /n{} + {} + {} + ... + {} /n{} + {} + {} + ... + {}", ""],
-    "5":["Cho dãy số: {}, {}, {},  ...", ""]
+    "5":["Cho dãy số: {}, {}, {}, ... \n{} là số hạng thứ mấy của dãy?", "thứ "]
 }
 
 import random
@@ -23,7 +23,7 @@ def ProgressionE(t=random.randrange(0,5)):
         task[1] = str(n) + task[1]
     elif t == 2:
         s,k,n = genNum([1,10]), genNum([1,4]),genNum([10,200])
-        task[0] = task[0].format(s,s+k,s+2*k,s+3*k,s+4*k,n)
+        task[0] = task[0].format(s,s+k,s+2*k,n)
         task[1] = str(s + (n-1) * k) + task[1]
     elif t == 3:
         s,k,n = genNum([1,10]), genNum([1,4]),genNum([10,200])
@@ -37,6 +37,8 @@ def ProgressionE(t=random.randrange(0,5)):
                                  s1,s1+k1,s1+2*k1,s1+(n1-1)*k1,
                                  s2,s2+k2,s2+2*k2,s2+(n2-1)*k2)
         task[1] = str((2*s + (n-1)*k)*n/2) +" " +str((2*s1 + (n1-1)*k1)*n1/2) + " "+str((2*s2 + (n2-1)*k2)*n2/2) + task[1]
+    elif t == 5:
+        s,k,n = genNum([1,10]), genNum([1,4]),genNum([10,200])
+        task[0] = task[0].format(s,s+k, s+2*k, s+(n-1)*k)
+        task[1] += str(n)
     return task
-
-print(ProgressionE(t=4))
