@@ -10,11 +10,17 @@
         href="{{ url_for('static', filename='img/createenLogo.png') }} " />
     <!-- font awesome cdn link  -->
 
-    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_main_2.css') }}">
 
 </head>
@@ -48,7 +54,7 @@
         <section class="flex" style="display: inline; padding-left: 70px;">
 
             <!-- <a href="home.html" class="logo">Educa.</a> -->
-            <button class="btn" data-toggle="modal" id="clock-btn" href="#clock" role="button" aria-expanded="false"
+            <!-- <button class="btn" data-toggle="modal" id="clock-btn" href="#clock" role="button" aria-expanded="false"
                 aria-controls="collapseExample"
                 style="display: inline; margin-left: 3px; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px; width: 80px;">
 
@@ -80,7 +86,7 @@
 
                 <img src="{{ url_for('static', filename='img/music_chord.png')}}" width="30px"
                     style="margin-top: 0px; padding: 5px; background-color: rgb(254, 255, 222); border-radius: 10px; ">
-            </button>
+            </button> -->
             <button id="user-btn" class="btn"
                 style="display: inline; margin-left: 5px; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px; width: 40px; height: 40px; float:right; margin-right: 10px;">
 
@@ -88,9 +94,9 @@
 
             </button>
             <button id="toggle-btn" class="btn"
-                style="display: inline; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px; width: 40px; height: 40px; margin-left: 2px;">
+                style="display: inline; text-decoration: none;background-color: rgb(255, 255, 255); border-radius: 10px; width: 40px; height: 40px; margin-left: 2px;">
 
-                <div class="fas fa-sun" style="font-size: 20px;"></div>
+                <div style="font-size: 20px;"></div>
 
             </button>
 
@@ -100,8 +106,8 @@
                 <h3 class="name">{{ name }}</h3>
                 <!-- <p class="role">studen</p> -->
 
-                <a href="signup" class="btn"
-                    style="color: black; width: 100%; background-color: aquamarine; padding: 15px; font-size: medium; font-weight: 600;">Sign
+                <a href="signup" class="option-btn" style="text-decoration: none;"
+                    style="color: black; width: 100%; background-color: aquamarine; padding: 10px; font-size: medium; font-weight: 600;">Sign
                     Up</a>
                 <div class="flex-btn">
                     <a style="text-decoration: none; " href="setting_up" class="option-btn">Setting</a>
@@ -113,7 +119,7 @@
 
     </header>
 
-    <div class="modal fade" id="clock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <!-- <div class="modal fade" id="clock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -245,9 +251,9 @@
                 }
             }
         }, 1000);
-    </script>
+    </script> -->
 
-    <div class="modal fade" id="task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <!-- <div class="modal fade" id="task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -346,9 +352,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="modal fade" id="note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <!-- <div class="modal fade" id="note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -468,7 +474,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -508,59 +514,634 @@
     </div>
 
 
-    <div class="side-bar" id="side-bar-1" style=" padding-top: 10%;">
-
-        <nav class="navbar1">
-            <a style="text-decoration: none;" href="/"><i class="fas fa-home"></i><span id="home_span"></span></a>
-            <a style="text-decoration: none;" href="create_room"><i class="fas fa-school"> </i><span
-                    id="create_room_span"></span></a>
-            <a style="text-decoration: none;" href="join_room"><i class="fas fa-chalkboard-user"></i><span
-                    id="join_room_span"></span></a>
-            <a style="text-decoration: none;" href="entertainment"><i class="fas fa-gamepad"></i><span
-                    id="entertainment_span"></span></a>
-            <a style="text-decoration: none;" href="chat"><i class="fas  fa-comment"></i><span
-                    id="chat_span"></span></a>
+    <div class="side_bar" id="side_bar">
+        <nav class="nav_bar">
+            <a class="side_bar_part" style="text-decoration: none;" href="/"><img
+                    src="{{ url_for('static', filename='img/icon/side_bar/home.png')}}" class="side_bar_img"><span
+                    id="home_span" class="text_span"></span></a>
+            <a class="side_bar_part" style="text-decoration: none;" data-toggle="modal"
+                data-target="#create_join_room_toggle" href="#" id="test"><img
+                    src="{{ url_for('static', filename='img/icon/side_bar/room.png')}}" class="side_bar_img"><span
+                    id="room_span" class="text_span"></span></a>
+            <a class="side_bar_part" style="text-decoration: none;" href="entertainment"><img
+                    src="{{ url_for('static', filename='img/icon/side_bar/game.png')}}" class="side_bar_img"><span
+                    id="game_span" class="text_span"></span></a>
+            <a class="side_bar_part" style="text-decoration: none;" href="/"><img
+                    src="{{ url_for('static', filename='img/icon/side_bar/chat.png')}}" class="side_bar_img"><span
+                    id="chat_span" class="text_span"></span></a>
+            <a class="side_bar_part" style="text-decoration: none;" href="/"><img
+                    src="{{ url_for('static', filename='img/icon/side_bar/task.png')}}" class="side_bar_img"><span
+                    id="task_span" class="text_span"></span></a>
         </nav>
-
     </div>
 
-    <script>
-        var cnt = 0
-        $("#side-bar-1").hover(function () {
-            if (cnt % 2 == 0) {
-                $("#home_span").text("Home")
-                $("#create_room_span").text("Create Room")
-                $("#join_room_span").text("Join Room")
-                $("#entertainment_span").text("Entertainment")
-                $("#chat_span").text("Chat")
-                var profile_html = `
-                <img src="{{ url_for('static', filename='photo_url/Users/' + photo_url) }}" class="image" alt="">
-                <h3 class="name">shaikh anas</h3>
-                <p class="role">studen</p>
-            `
-            }
-            else {
-                $("#home_span").text("")
-                $("#create_room_span").text("")
-                $("#join_room_span").text("")
-                $("#entertainment_span").text("")
-                $("#chat_span").text("")
-
-            }
-            cnt++
-
+    <!-- <script>
+        $(document).ready(function(){
+            $("#test").click(function(){
+                console.log(123)
+            })
         })
-    </script>
-    <!-- 
+    </script> -->
 
-</section> -->
+    <div class="modal fade" id="create_join_room_toggle" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Tạo/Vào phòng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-outline-success btn-lg btn-block create_room_button"
+                        id="create_room_button" data-toggle="modal" data-target="#create_room_toggle">Tạo phòng</button>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block join_room_button"
+                        id="join_room_button" data-toggle="modal" data-target="#join_room_toggle">Vào phòng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_room_toggle" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Tạo phòng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3"
+                        style="position: fixed; margin-top: 0vh; width: 450px; margin-left: 0vh;">
+                        <input type="text" class="form-control" placeholder="Tên phòng"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2"
+                            style="border-style: solid; border-color: #000000; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                        <button class="btn btn-outline-secondary" type="button"
+                            style="background-color: #fff; height: 40px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
+                            <p style="color: #000000; font-weight: 600;">Tạo</p>
+                        </button>
+                    </div>
+                    <div class="color_pick" style="margin-top: 7.5vh; margin-left: 0vh; width: 450px;">
+                        <div class="color_circle"
+                            style="background-color: #f74824 ; border-color: #000000; border-style: solid; ">
+                        </div>
+                        <div class="color_circle" style="background-color: #FF66C4 ;"></div>
+                        <div class="color_circle" style="background-color: #00BF63 ;"></div>
+                        <div class="color_circle" style="background-color: #558FF8 ;"></div>
+                        <div class="color_circle" style="background-color: #4682A9 ;"></div>
+                        <div class="color_circle" style="background-color: #ADC4CE ;"></div>
+                        <div class="color_circle" style="background-color: #000000 ;"></div>
+                        <div class="color_text">
+                            <img src="{{ url_for('static', filename='img/icon/B.svg')}}" width="15px">
+                        </div>
+                        <div class="color_text">
+                            <img src="{{ url_for('static', filename='img/icon/i.svg')}}" width="15px">
+                        </div>
+                        <div class="color_text">
+                            <img src="{{ url_for('static', filename='img/icon/u.svg')}}" width="15px">
+                        </div>
+                        <div class="color_text">
+                            <img src="{{ url_for('static', filename='img/icon/p.svg')}}" width="15px">
+                        </div>
+                    </div>
+                    <textarea class="room_content" name="" id="" cols="30" rows="8"
+                        style="border-style: solid; border-color: #000000; border-width: 1px; padding: 10px;"
+                        spellcheck="false" placeholder="Ghi chú của phòng"></textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="join_room_toggle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Vào phòng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </section>
     <div style="margin-left: 80px;">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Sach toan 10
+
+        <div>
+            <div class="question body_part">
+                <!-- <img src="{{ url_for('static', filename='img/icon/arrow.png') }}"> -->
+
+                <div class="question_box">
+                    <p style="font-size: 30px;">
+                        {{ l[0][0] }}
+                    </p>
+                </div>
+
+                <label for="inp" class="inp">
+                    <input type="text" id="inp" placeholder="&nbsp;">
+                    <span class="label">Đáp án</span>
+                    <span class="focus-bg"></span>
+                </label>
+                <a href="#">
+                    <img src="{{ url_for('static', filename='img/icon/arrow.png') }}"
+                        style="margin-top: 30vh;margin-left:90% ;position: absolute;" width="60vh" height="60vh">
+                </a>
+
+            </div>
+
+            <div class="clock body_part" id="clock">
+                <div class="container-clock">
+
+                    <div class="circular_progress">
+                        <div class="circular_static">
+
+                        </div>
+                        <span class="progress_value">
+                            <p id="clock2">25:00</p>
+                        </span>
+                    </div>
+
+                </div>
+                <!-- <div id="clock-msg">
+        
+                </div> -->
+
+                <div class="input-group mb-3"
+                    style="border-color:#ffc107; border-style: solid ;border-radius: 10px; border-width: 1.5px; width: 45vh; margin-left: 2vh;"
+                    id="clock_input">
+                    <span class="input-group-text"
+                        style="height: 35px; background-color: #e8e8e8; width: 10vh; border-top-left-radius: 10px; border-end-start-radius: 10px; ; height: 30px;">Phút</span>
+                    <input type="number" class="form-control" value="25" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2" id="minute_change" style="height: 30px;">
+                    <span class="input-group-text"
+                        style="height: 35px; background-color: #e8e8e8; width: 50px; height: 30px;">Giây</span>
+                    <input type="number" class="form-control" value="00" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2" id="second_change" style="height: 30px;">
+                    <a href="#" style="text-decoration: none;"><span class="input-group-text"
+                            style="height: 30px; background-color: #ffc107; width: 80px; height: 30px;"
+                            id="time_change">Đổi</span></a>
+
+                </div>
+
+                <script>
+                    var cnt = 0
+                    var choose = 0
+                    var minute = 25
+                    var second = 0
+                    var sleep_minute = 5
+                    var sleep_second = 0
+                    var total_second = minute * 60
+                    let progressStartValue = 0, progressEndValue = 100
+                    $(document).ready(function () {
+                        $("#time_change").click(function () {
+
+                            minute = $("#minute_change").val()
+                            second = $("#second_change").val()
+                            total_second = minute * 60 + second
+                            progressEndValue = 100
+                            //$("#minute_change").val()
+                            //$("#second_change").val()
+                        })
+                    })
+
+                    var tmp = setInterval(function () {
+                        $("#clock1").empty();
+                        $("#clock2").empty();
+                        var minute_str = String(minute)
+                        var second_str = String(second)
+                        if (minute_str.length == 1) {
+                            minute_str = "0" + minute_str
+                        }
+                        if (second_str.length == 1) {
+                            second_str = "0" + second_str
+                        }
+                        let circularProgress = document.querySelector(".circular_progress"),
+                            progressValue = document.querySelector(".progress_value");
+
+                        progressEndValue -= (100 / total_second);
+                        progressValue.textContent = minute_str + ":" + second_str
+                        if (choose == 0) {
+                            circularProgress.style.background = `conic-gradient(#ffc107 ${progressEndValue * 3.6}deg, #ededed 0deg)`
+                            progressValue.style.color = "#ffc107"
+                        }
+                        else {
+                            circularProgress.style.background = `conic-gradient(#33d6ff ${progressEndValue * 3.6}deg, #ededed 0deg)`
+                            progressValue.style.color = "#33d6ff"
+                        }
+                        if (progressStartValue == progressEndValue) {
+                            clearInterval(progress);
+                        }
+                        $("#clock1").append(minute_str + ":" + second_str);
+                        $("#clock2").append(minute_str + ":" + second_str);
+                        if (second == 0) {
+                            second = 60
+                            minute -= 1
+                        }
+                        second -= 1
+                        if (second == 0 && minute == 0) {
+                            minute = sleep_minute
+                            second = sleep_second
+                            total_second = minute * 60 + second
+                            progressEndValue = 100
+                            if (sleep_minute == 5 || sleep_minute == 15) {
+                                sleep_minute = 25
+                            }
+                            else {
+                                if (cnt == 2) {
+                                    cnt = 0
+                                    sleep_minute = 15
+                                }
+                                else {
+                                    sleep_minute = 5
+                                    cnt++
+                                }
+                            }
+                            if (choose == 0) {
+                                choose = 1
+                                $("#sleep_clock").click()
+                            }
+                            else {
+                                $("#clock-msg").empty()
+                                choose = 0
+                            }
+                        }
+                    }, 1000);
+                </script>
+            </div>
+
+        </div>
+
+        <button type="button" data-toggle="modal" data-target="#sleep_clock_msg" id="sleep_clock" hidden>
+
         </button>
 
         <!-- Modal -->
+        <div class="modal fade" id="sleep_clock_msg" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Đồng hồ Pomodoro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style='align-items: center; justify-content: center; text-align: center;'> Hết thời gian của
+                            phiên làm việc.<br> Hãy nghỉ ngơi hoặc giải trí tại <a href='/entertainment'
+                                style='text-decoration: none; '>đây</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var note_color = "1";
+            $(document).ready(function () {
+                {% for m in range(1, 8) %}
+                $("#note_color_{{ m }}").click(function () {
+                    note_color = `{{ m }}`;
+                    console.log(note_color)
+                    {% for n in range(1, 8) %}
+                    $("#note_color_{{ n }}").css({ "border-style": "none" })
+                    {% endfor %}
+                    $("#note_color_{{ m }}").css({ "border-color": "#ffc107", "border-style": "solid" })
+                })
+                {% endfor %}
+                $("#note_add_button").click(function () {
+
+                    note_content = $("#note_content").val()
+                    note_name = $("#note_name").val()
+
+                    note_color_arr = {
+                        "1":"#f74824",
+                        "2":"#FF66C4",
+                        "3":"#00BF63",
+                        "4":"#558FF8",
+                        "5":"#4682A9",
+                        "6":"#ADC4CE",
+                        "7":"#000000",
+                    }
+
+                    note_add_html = `
+                    <a href="#" style="text-decoration: none; color: #000" data-toggle="modal" data-target="#`+ note_name +`">
+                        <div class="note_made" style="background-color: `+ note_color_arr[note_color] +`;">
+                            <p style="font-size: 20px; margin-top: 10px;">
+                                ` + note_name + `
+                            </p>
+                        </div>
+                    </a>
+                    <div class="modal fade" id="`+ note_name +`" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">`+ note_name +`</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              `+ note_content +`
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger">Xoá</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    `
+                    $("#notes").append(note_add_html)
+                   
+                })
+            })
+        </script>
+
+        <!-- Modal -->
+
+        <div>
+            <div class="note body_part">
+
+                <div class="color_pick">
+                    <div class="color_circle"
+                        style="background-color: #f74824 ; border-color: #ffc107; border-style: solid; "
+                        id="note_color_1">
+                    </div>
+                    <div class="color_circle" style="background-color: #FF66C4 ;" id="note_color_2"></div>
+
+
+                    <div class="color_circle" style="background-color: #00BF63 ;" id="note_color_3"></div>
+                    <div class="color_circle" style="background-color: #558FF8 ;" id="note_color_4"></div>
+                    <div class="color_circle" style="background-color: #4682A9 ;" id="note_color_5"></div>
+                    <div class="color_circle" style="background-color: #ADC4CE ;" id="note_color_6"></div>
+                    <div class="color_circle" style="background-color: #000000 ;" id="note_color_7"></div>
+                    <div class="color_text">
+                        <img src="{{ url_for('static', filename='img/icon/B.svg')}}" width="15px">
+                    </div>
+                    <div class="color_text">
+                        <img src="{{ url_for('static', filename='img/icon/i.svg')}}" width="15px">
+                    </div>
+                    <div class="color_text">
+                        <img src="{{ url_for('static', filename='img/icon/u.svg')}}" width="15px">
+                    </div>
+                    <div class="color_text">
+                        <img src="{{ url_for('static', filename='img/icon/p.svg')}}" width="15px">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3"
+                    style="position: absolute; margin-top: 32vh; width: 430px; margin-left: 6vh;">
+                    <input type="text" class="form-control" placeholder="Tên ghi chú" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2" id="note_name"
+                        style="border-style: solid; border-color: #000000; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                    <button type="button"
+                        style="background-color: #ffffff; height: 40px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;"
+                        class="btn btn-outline-secondary" id="note_add_button">
+                        <img src="{{ url_for('static', filename='img/icon/arrow.png')}}"
+                            style="height: 30px; width: 30px;">
+                    </button>
+                </div>
+                <textarea class="note_content" name="" id="note_content" cols="30" rows="8"
+                    style="border-style: solid; border-color: #000000; border-width: 1px; padding: 10px;"
+                    spellcheck="false"></textarea>
+
+                <div class="notes" style="overflow-y: scroll; position: absolute; margin-left:57%;" id="notes">
+                    <div class="note_made" style="background-color: #FF66C4;">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            7 hằng đẳng thức đáng nhớ
+                        </p>
+                        
+
+                    </div>
+                    
+                    <div class="note_made" style="background-color: #FF66C4;">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            asfasfas
+                        </p>
+                        
+
+                    </div>
+
+                    <!--
+                    <div class="note_made" style="background-color: #00BF63 ;">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            Định lý fermat nhỏ
+                        </p>
+                        <div class="note_made_name">
+                            <i style="float: right; margin-left: 105px; margin-top: 15px;"
+                                class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div class="note_made">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            Công thức hê-rông
+                        </p>
+                        <div class="note_made_name">
+                            <i style="float: right; margin-left: 100px; margin-top: 15px;"
+                                class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <div class="note_made">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            Công thức hê-rông
+                        </p>
+                        <div class="note_made_name">
+                            <i style="float: right; margin-left: 100px; margin-top: 15px;"
+                                class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div class="note_made">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            Công thức hê-rông
+                        </p>
+                        <div class="note_made_name">
+                            <i style="float: right; margin-left: 100px; margin-top: 15px;"
+                                class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div class="note_made">
+                        <p style="font-size: 20px; margin-top: 10px;">
+                            Công thức hê-rông
+                        </p>
+                        <div class="note_made_name">
+                            <i style="float: right; margin-left: 100px; margin-top: 15px;"
+                                class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                </div>  -->
+
+                </div>
+                <div class="chat body_part" id="chat">
+
+                    <div
+                        style="margin-top: 10px; margin-left: 27% ;height: 30px; width: 160px; background-color: #ffc107; border-radius: 20px; border-style: solid; border-width: 1px; ">
+                        <p style="margin-left: 13%; font-family: sans-serif; font-weight: 600;">
+                            i want to study !
+                        </p>
+                    </div>
+
+                    <div
+                        style="margin-top: 10px ;height: 30px; width: 160px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;">
+                        <p style="margin-left: 13%; font-family: sans-serif; font-weight: 600;">
+                            Tính năng
+                        </p>
+                    </div>
+
+                    <div id="chat_2"
+                        style="visibility: hidden ;float: right ;margin-top: 10px ;height: 30px; width: 160px; background-color: #ffffff; border-top-left-radius: 20px;border-bottom-left-radius: 20px ;">
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            Trắc nghiệm
+                        </p>
+                    </div>
+                    <div style="visibility: hidden;margin-top: 10px ;height: 30px; width: 160px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;"
+                        id="chat_1">
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            Tự luận
+                        </p>
+                    </div>
+                    <div id="chat_3"
+                        style="visibility: hidden; align-items: center; ;margin-top: 10px ;height: 30px; width: 190px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;">
+                        <p
+                            style="text-align: center;justify-content: center; font-family: sans-serif; font-weight: 500;">
+                            Thắc mắc tâm lý
+                        </p>
+                    </div>
+                    <div id="chat_4"
+                        style="visibility: hidden;float: right ;margin-top: 10px ;height: 30px; width: 200px; background-color: #ffffff; border-top-left-radius: 20px;border-bottom-left-radius: 20px ;">
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            Bài kiểm tra khó quá ?
+                        </p>
+                    </div>
+
+                    <div class="input-group mb-3"
+                        style="margin-top: 10%; width: 330px; margin-left: 18px; float: right;" id="chat_box">
+                        <input type="text" class="form-control" placeholder="Tin nhắn" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2" id="chat_input" style="visibility: hidden; width: 0px;">
+                        <div class="input-group-append" style="height: 50px;">
+                            <button id="chat_button" class="btn btn-outline-secondary" type="button"
+                                style="background-color: #fff; height: 50px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                                <img src="{{ url_for('static', filename='img/icon/arrow.png')}}"
+                                    style="height: 40px; width: 40px;">
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    $("#chat").on("mouseover", function () {
+                        $("#clock_input").css({ "visibility": "hidden", })
+                        $("#chat_1").css({ "visibility": "unset", })
+                        $("#chat_2").css({ "visibility": "unset", })
+                        $("#chat_3").css({ "visibility": "unset", })
+                        $("#chat_4").css({ "visibility": "unset", })
+                        $("#clock").css({ "height": "20vh", "transition-duration": "0.5s" })
+                        $("#chat").css({ "height": "60vh", "margin-top": "-20vh", "transition-duration": "0.5s" })
+                        $(".container-clock").css({ "margin-left": "2%", "transition-duration": "0.5s" })
+
+                        $(".circular_progress").css({ "height": "120px", "width": "120px", "transition-duration": "0.5s" })
+                        $(".circular_static").css({ "height": "100px", "width": "100px", "transition-duration": "0.5s" })
+                        $(".progress_value").css({ "margin-left": "300px", "transition-duration": "0.5s" })
+                        $("#chat_box").css({ "margin-top": "50%", "transition-duration": "0.5s" })
+
+                    })
+                    $("#chat").on("mouseleave", function () {
+                        $("#clock").css({ "height": "40vh" })
+                        $("#chat").css({ "height": "40vh", "margin-top": "0vh", "transition-duration": "0.5s" })
+                        $(".container-clock").css({ "margin-left": "4%", "transition-duration": "0.5s" })
+
+                        $(".circular_progress").css({ "height": "220px", "width": "220px", "transition-duration": "0.5s" })
+                        $(".circular_static").css({ "height": "180px", "width": "180px", "transition-duration": "0.5s" })
+                        $(".progress_value").css({ "margin-left": "0px", "transition-duration": "0.5s" })
+                        $("#clock_input").css({ "visibility": "unset" })
+                        $("#chat_1").css({ "visibility": "hidden", })
+                        $("#chat_2").css({ "visibility": "hidden", })
+                        $("#chat_3").css({ "visibility": "hidden", })
+                        $("#chat_4").css({ "visibility": "hidden", })
+                        $("#chat_box").css({ "margin-top": "10%", "transition-duration": "0.5s" })
+                    })
+                    $("#chat_button").on("mouseover", function () {
+                        $("#chat_input").css({ "visibility": "unset", "transition-duration": "0.5s" })
+                        $("#chat_button").css({ "border-top-left-radius": "0px" })
+                        $("#chat_button").css({ "border-bottom-left-radius": "0px" })
+                        $("#chat_input").focus()
+                    })
+                    $("#chat_button").on("mouseleave", function () {
+                        $("#chat_input").css({ "visibility": "hidden", "transition-duration": "0.5s" })
+                        $("#chat_button").css({ "border-top-left-radius": "20px" })
+                        $("#chat_button").css({ "border-bottom-left-radius": "20px" })
+                    })
+                })
+            </script>
+
+            <script>
+                var side_bar_hover_cnt = 0
+                $("#side_bar").hover(function () {
+                    if (side_bar_hover_cnt % 2 == 0) {
+                        $(".question").css({ "margin-left": "26vh", "transition-duration": "0.5s" })
+                        $(".clock").css({ "margin-right": "3vh", "transition-duration": "0.5s" })
+                        $(".note").css({ "margin-left": "26vh", "transition-duration": "0.5s" })
+                        $(".chat").css({ "margin-right": "3vh", "transition-duration": "0.5s" })
+                        var x = setTimeout(function () {
+
+
+                            $("#home_span").text("Trang chủ")
+                            $("#room_span").text("Tạo/Vào phòng")
+                            $("#game_span").text("Trò chơi")
+                            $("#chat_span").text("Chat bot")
+                            $("#task_span").text("Nhiệm vụ")
+
+                        }, 500)
+                    }
+                    else {
+                        $(".question").css({ "margin-left": "10vh", "transition-duration": "0.5s" })
+                        $(".clock").css({ "margin-right": "10vh", "transition-duration": "0.5s" })
+                        $(".note").css({ "margin-left": "10vh", "transition-duration": "0.5s" })
+                        $(".chat").css({ "margin-right": "10vh", "transition-duration": "0.5s" })
+                        $("#home_span").text("")
+                        $("#room_span").text("")
+                        $("#game_span").text("")
+                        $("#chat_span").text("")
+                        $("#task_span").text("")
+
+                    }
+                    side_bar_hover_cnt++
+                })
+                var tmp = setInterval(function () {
+                    if (side_bar_hover_cnt % 2 == 0) {
+                        $("#home_span").text("")
+                        $("#room_span").text("")
+                        $("#game_span").text("")
+                        $("#chat_span").text("")
+                        $("#task_span").text("")
+                    }
+                }, 1)
+            </script>
+
+
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Sach toan 10
+        </button>
+
+        Modal
 
         <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -605,21 +1186,22 @@
                     </div>
                     <div class="modal-body">
                         {% for m in range(0, 5)%}
-                            <p style="font-size: x-large;">{{ l[m][0] }} &nbsp;</p> 
-                            <button class="btn" id="show{{m}}">Answer</button> <p id="ans{{m}}" style="font-size: x-large;"></p>
-                            <script>
-                                $("#show{{m}}").click(function(){
-                                    console.log("{{ l[m][1] }}")
-                                    $("#ans{{m}}").text("{{ l[m][1] }}")
-                                })
-                            </script>
+                        <p style="font-size: x-large;">{{ l[m][0] }} &nbsp;</p>
+                        <button class="btn" id="show{{m}}">Answer</button>
+                        <p id="ans{{m}}" style="font-size: x-large;"></p>
+                        <script>
+                            $("#show{{m}}").click(function () {
+                                console.log("{{ l[m][1] }}")
+                                $("#ans{{m}}").text("{{ l[m][1] }}")
+                            })
+                        </script>
                         {% endfor %}
                     </div>
                 </div>
             </div>
 
-        </div>
-        <!-- <div id="accordion" style="width: auto; margin-right: 2%;">
+        </div> -->
+            <!-- <div id="accordion" style="width: auto; margin-right: 2%;">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
@@ -740,20 +1322,13 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                    3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                    laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                    coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                    occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-                    of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
     </div>
     </div> -->
 
-        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
