@@ -680,6 +680,7 @@
                 $("#question_submit").click(function () {
                     question = $("#question").text()
                     reply = $("#inp").val()
+		    $("#inp").val("")
                     if (q[q_cnt - 1][1] == reply){
                         $("#question").html(question+'\nĐúng rùi').wrap('<pre />');
                     }
