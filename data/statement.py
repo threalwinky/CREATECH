@@ -7,3 +7,5 @@ statementE = {
 def StatementE(t=1):
     task = statementE[str(t)]
     return task
+
+print(StatementE())

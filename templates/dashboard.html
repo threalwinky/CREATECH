@@ -72,7 +72,7 @@
                 <p id="task1" style="display: inline;">0/0</p>
             </button>
             <button class="btn" data-toggle="modal" href="#note" role="button" aria-expanded="false"
-                  aria-controls="collapseExample"
+                aria-controls="collapseExample"
                 style="display: inline; margin-left: 3px; text-decoration: none;background-color: rgb(254, 255, 222); border-radius: 10px;">
 
                 <img src="{{ url_for('static', filename='img/note.png')}}" width="30px"
@@ -646,8 +646,8 @@
                 <!-- <img src="{{ url_for('static', filename='img/icon/arrow.png') }}"> -->
 
                 <div class="question_box">
-                    <p style="font-size: 30px;">
-                        {{ l[0][0] }}
+                    <p style="font-size: 30px;" id="question">
+
                     </p>
                 </div>
 
@@ -656,12 +656,44 @@
                     <span class="label">Đáp án</span>
                     <span class="focus-bg"></span>
                 </label>
-                <a href="#">
+                <a href="#" id="question_submit">
                     <img src="{{ url_for('static', filename='img/icon/arrow.png') }}"
                         style="margin-top: 30vh;margin-left:90% ;position: absolute;" width="60vh" height="60vh">
                 </a>
 
             </div>
+
+            <script>
+                var q_cnt = 0
+                var q = []
+                $.post('get_question', {
+
+                })
+                    .done(function (data) {
+                        q = data
+                        $("#question").text(q[q_cnt][0])
+                        q_cnt++
+                    })
+                $(document).ready(function(){
+                    
+                })
+                $("#question_submit").click(function () {
+                    question = $("#question").text()
+                    reply = $("#inp").val()
+                    if (q[q_cnt - 1][1] == reply){
+                        $("#question").html(question+'\nĐúng rùi').wrap('<pre />');
+                    }
+                    else $("#question").html(question+'\nSai rùi đáp án là '+ q[q_cnt - 1][1]).wrap('<pre />');
+                    var x = setTimeout(function(){
+                        
+                        console.log(q[q_cnt - 1][1] == reply)
+                        $("#question").text(q[q_cnt][0])
+                        q_cnt++
+                    }, 3000)
+                    
+                })
+
+            </script>
 
             <div class="clock body_part" id="clock">
                 <div class="container-clock">
@@ -812,6 +844,7 @@
 
         <script>
             var note_color = "1";
+            var notes_cnt = "{{ notes_cnt }}"
             $(document).ready(function () {
                 {% for m in range(1, 8) %}
                 $("#note_color_{{ m }}").click(function () {
@@ -827,46 +860,55 @@
 
                     note_content = $("#note_content").val()
                     note_name = $("#note_name").val()
+                    $("#note_content").val("")
+                    $("#note_name").val("")
 
                     note_color_arr = {
-                        "1":"#f74824",
-                        "2":"#FF66C4",
-                        "3":"#00BF63",
-                        "4":"#558FF8",
-                        "5":"#4682A9",
-                        "6":"#ADC4CE",
-                        "7":"#000000",
+                        "1": "#f74824",
+                        "2": "#FF66C4",
+                        "3": "#00BF63",
+                        "4": "#558FF8",
+                        "5": "#4682A9",
+                        "6": "#ADC4CE",
+                        "7": "#000000",
                     }
-
+                    $.post('create_note', {
+                        note_color: note_color_arr[note_color],
+                        note_content: note_content,
+                        note_name: note_name
+                    })
+                    console.log(notes_cnt)
+                    notes_cnt++
                     note_add_html = `
-                    <a href="#" style="text-decoration: none; color: #000" data-toggle="modal" data-target="#`+ note_name +`">
-                        <div class="note_made" style="background-color: `+ note_color_arr[note_color] +`;">
+                    <a href="#" style="text-decoration: none; color: #000" data-toggle="modal" data-target="#`+ note_name + `">
+                        <div class="note_made" style="background-color: `+ note_color_arr[note_color] + `;">
                             <p style="font-size: 20px; margin-top: 10px;">
                                 ` + note_name + `
                             </p>
                         </div>
                     </a>
-                    <div class="modal fade" id="`+ note_name +`" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="`+ note_name + `" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">`+ note_name +`</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">`+ note_name + `</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
                             <div class="modal-body">
-                              `+ note_content +`
+                              `+ note_content + `
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger">Xoá</button>
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
+
                     `
                     $("#notes").append(note_add_html)
-                   
+
                 })
             })
         </script>
@@ -920,7 +962,52 @@
                     spellcheck="false"></textarea>
 
                 <div class="notes" style="overflow-y: scroll; position: absolute; margin-left:57%;" id="notes">
-                    <div class="note_made" style="background-color: #FF66C4;">
+
+                    {% for m in notes %}
+
+                    <a href="#" style="text-decoration: none; color: #000" data-toggle="modal"
+                        data-target="#note_{{ m[0] }}">
+                        <div class="note_made" style="background-color: {{ m[1] }};">
+                            <p style="font-size: 20px; margin-top: 10px;">
+                                {{ m[3] }}
+                            </p>
+                        </div>
+                    </a>
+                    <div class="modal fade" id="note_{{ m[0] }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">{{m[3]}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{m[2]}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                        id="delete_note_{{ m[0] }}">Xoá</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $("#delete_note_{{ m[0] }}").click(function () {
+                                $.post('delete_note', {
+                                    note_id: "{{ m[0] }}",
+                                })
+
+                            })
+                        })
+
+                    </script>
+                    {% endfor%}
+
+
+                    <!-- <div class="note_made" style="background-color: #FF66C4;">
                         <p style="font-size: 20px; margin-top: 10px;">
                             7 hằng đẳng thức đáng nhớ
                         </p>
@@ -934,7 +1021,7 @@
                         </p>
                         
 
-                    </div>
+                    </div> -->
 
                     <!--
                     <div class="note_made" style="background-color: #00BF63 ;">
@@ -1095,9 +1182,9 @@
                 var side_bar_hover_cnt = 0
                 $("#side_bar").hover(function () {
                     if (side_bar_hover_cnt % 2 == 0) {
-                        $(".question").css({ "margin-left": "26vh", "transition-duration": "0.5s" })
-                        $(".clock").css({ "margin-right": "3vh", "transition-duration": "0.5s" })
-                        $(".note").css({ "margin-left": "26vh", "transition-duration": "0.5s" })
+                        $(".question").css({ "margin-left": "20vh", "transition-duration": "0.5s" })
+                        $(".clock").css({ "margin-right": "0vh", "transition-duration": "0.5s" })
+                        $(".note").css({ "margin-left": "20vh", "transition-duration": "0.5s" })
                         $(".chat").css({ "margin-right": "3vh", "transition-duration": "0.5s" })
                         var x = setTimeout(function () {
 

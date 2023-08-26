@@ -62,3 +62,5 @@ def ProgressionM(t=0):
         task[0].format(w=word, c1=color[0],c2=color[1],c3=color[2], n = n)
         task[1].format(c=word[n%len(word)-1],m=color[n%3-1])
     return task
+
+print(ProgressionM())

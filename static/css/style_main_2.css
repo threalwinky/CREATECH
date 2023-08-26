@@ -1397,7 +1397,7 @@ section {
 
 
 body {
-   background-color: #ffe9a2;
+   background-color: rgba(217, 219, 206, 255);
 }
 
 nav {
@@ -1827,8 +1827,8 @@ body {
 .openbtn {
    font-size: 20px;
    cursor: pointer;
-   background-color: rgba(0, 0, 200, 255);
-   color: rgba(0, 0, 200, 255);
+   background-color: rgba(217, 219, 206, 255);
+   color: rgba(217, 219, 206, 255);
    padding: 10px 15px;
    border: none;
    position: fixed;

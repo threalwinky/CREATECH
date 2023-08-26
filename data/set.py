@@ -14,3 +14,4 @@ def makeEquation(layer = 0):
     elif layer == 1:
         for i in range(genNum([1,3])+1):
             a = [genNum([1,2]),genNum([3,12]),genNum([1,2]),genNum([3,12])]
+

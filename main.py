@@ -375,17 +375,63 @@ def dashboard():
         name = found_user.name
         photo_url = found_user.photo_url
         email = found_user.email
-        math = random.sample(l, 5)
+        math = random.sample(l, 100)
         math_real = []
         for m in math:
             tmp  = m[0].split("b'")[1]
             tmp2 = m[1].split("b'")[1]
             math_real.append([tmp.split(".\\n'")[0], tmp2.split("\\n")[0]])
-        print(math)
-        return render_template('dashboard.html', username=username, name=name, photo_url=photo_url, email=email, l=math_real)
+        snotes = found_user.note.split("$$$$")
+        notes = []
+        for i in range(1, len(snotes)):
+            notes.append(snotes[i].split("^^^^"))
+        return render_template('dashboard.html', username=username, name=name, photo_url=photo_url, email=email, l=math_real, notes=notes, notes_cnt = len(notes))
     else:
         return redirect(url_for("log_in"))
 
+@app.route('/get_question', methods=["POST", "GET"])
+def get_question():
+    math = random.sample(l, 100)
+    math_real = []
+    for m in math:
+        tmp  = m[0].split("b'")[1]
+        tmp2 = m[1].split("b'")[1]
+        math_real.append([tmp.split(".\\n'")[0], tmp2.split("\\n")[0]])
+    return math_real
+    
+
+@app.route('/create_note', methods=["POST", "GET"])
+def create_note():
+    if request.method == "POST":
+        
+        username = session["username"]
+        found_user = User.query.filter_by(username=username).first()
+        note_color = request.form["note_color"]
+        note_content = request.form["note_content"]
+        note_name = request.form["note_name"]
+        notes = found_user.note.split("$$$$")
+        note_id = len(notes)
+        found_user.note = found_user.note + "$$$$" + str(note_id) + "^^^^" + note_color + "^^^^" + note_content + "^^^^" + note_name
+        db.session.commit()
+        print(note_color, note_content, note_name, note_id)
+    return "True"
+
+@app.route('/delete_note', methods=["POST", "GET"])
+def delete_note():
+    if request.method == "POST":
+        username = session["username"]
+        found_user = User.query.filter_by(username=username).first()
+        note_id = request.form["note_id"]
+        snotes = found_user.note.split("$$$$")
+        notes = ''
+        for i in range(1, len(snotes)):
+            s = snotes[i].split("^^^^")
+            if (s[0] != note_id):
+                notes += "$$$$" + snotes[i]
+        found_user.note = notes
+        db.session.commit()
+        print(note_id)
+    return "True"
 # Room Handling
 
 
