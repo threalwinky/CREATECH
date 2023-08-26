@@ -526,7 +526,7 @@
             <a class="side_bar_part" style="text-decoration: none;" href="entertainment"><img
                     src="{{ url_for('static', filename='img/icon/side_bar/game.png')}}" class="side_bar_img"><span
                     id="game_span" class="text_span"></span></a>
-            <a class="side_bar_part" style="text-decoration: none;" href="/"><img
+            <a class="side_bar_part" style="text-decoration: none;" href="/chat"><img
                     src="{{ url_for('static', filename='img/icon/side_bar/chat.png')}}" class="side_bar_img"><span
                     id="chat_span" class="text_span"></span></a>
             <a class="side_bar_part" style="text-decoration: none;" href="/"><img
@@ -578,24 +578,27 @@
                 <div class="modal-body">
                     <div class="input-group mb-3"
                         style="position: fixed; margin-top: 0vh; width: 450px; margin-left: 0vh;">
-                        <input type="text" class="form-control" placeholder="Tên phòng"
+                        <input id="room_name" type="text" class="form-control" placeholder="Tên phòng"
                             aria-label="Recipient's username" aria-describedby="basic-addon2"
                             style="border-style: solid; border-color: #000000; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
-                        <button class="btn btn-outline-secondary" type="button"
+                        <button id="room_add_button" class="btn btn-outline-secondary" type="button"
                             style="background-color: #fff; height: 40px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
                             <p style="color: #000000; font-weight: 600;">Tạo</p>
                         </button>
                     </div>
                     <div class="color_pick" style="margin-top: 7.5vh; margin-left: 0vh; width: 450px;">
                         <div class="color_circle"
-                            style="background-color: #f74824 ; border-color: #000000; border-style: solid; ">
+                            style="background-color: #f74824 ; border-color: #ffc107; border-style: solid; "
+                            id="room_color_1">
                         </div>
-                        <div class="color_circle" style="background-color: #FF66C4 ;"></div>
-                        <div class="color_circle" style="background-color: #00BF63 ;"></div>
-                        <div class="color_circle" style="background-color: #558FF8 ;"></div>
-                        <div class="color_circle" style="background-color: #4682A9 ;"></div>
-                        <div class="color_circle" style="background-color: #ADC4CE ;"></div>
-                        <div class="color_circle" style="background-color: #000000 ;"></div>
+                        <div class="color_circle" style="background-color: #FF66C4 ;" id="room_color_2"></div>
+
+
+                        <div class="color_circle" style="background-color: #00BF63 ;" id="room_color_3"></div>
+                        <div class="color_circle" style="background-color: #558FF8 ;" id="room_color_4"></div>
+                        <div class="color_circle" style="background-color: #4682A9 ;" id="room_color_5"></div>
+                        <div class="color_circle" style="background-color: #ADC4CE ;" id="room_color_6"></div>
+                        <div class="color_circle" style="background-color: #000000 ;" id="room_color_7"></div>
                         <div class="color_text">
                             <img src="{{ url_for('static', filename='img/icon/B.svg')}}" width="15px">
                         </div>
@@ -609,16 +612,60 @@
                             <img src="{{ url_for('static', filename='img/icon/p.svg')}}" width="15px">
                         </div>
                     </div>
-                    <textarea class="room_content" name="" id="" cols="30" rows="8"
+                    <textarea class="room_content" name="" cols="30" rows="8"
                         style="border-style: solid; border-color: #000000; border-width: 1px; padding: 10px;"
-                        spellcheck="false" placeholder="Ghi chú của phòng"></textarea>
+                        spellcheck="false" placeholder="Ghi chú của phòng" id="room_content"></textarea>
+
+
 
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="join_room_toggle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <script>
+        var room_color = "1";
+        var notes_cnt = "{{ notes_cnt }}"
+        $(document).ready(function () {
+            {% for m in range(1, 8) %}
+            $("#room_color_{{ m }}").click(function () {
+                room_color = `{{ m }}`;
+
+                {% for n in range(1, 8) %}
+                $("#room_color_{{ n }}").css({ "border-style": "none" })
+                {% endfor %}
+                $("#room_color_{{ m }}").css({ "border-color": "#ffc107", "border-style": "solid" })
+            })
+            {% endfor %}
+            $("#room_add_button").click(function () {
+
+                room_content = $("#room_content").val()
+                room_name = $("#room_name").val()
+                $("#room_content").val("")
+                $("#room_name").val("")
+
+                room_color_arr = {
+                    "1": "#f74824",
+                    "2": "#FF66C4",
+                    "3": "#00BF63",
+                    "4": "#558FF8",
+                    "5": "#4682A9",
+                    "6": "#ADC4CE",
+                    "7": "#000000",
+                }
+
+                console.log(room_color, room_content, room_name)
+                $.post("create_room", {
+                    room_color: room_color_arr[room_color],
+                    room_content: room_content,
+                    room_name: room_name
+                })
+            })
+        })
+    </script>
+
+
+    <div class="modal fade" id="join_room_toggle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -629,49 +676,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3>Room to join</h3>
-                    {% for m in all_rooms_attribute %}
-                    <div>
-                        <!-- <a href="useRoom/{{m.id}}">{{ m }}</a>
-        <p style="display: inline">{{ m.name }}</p>
-        <p style="display: inline">{{ m.description }}</p>
-        <p style="display: inline">{{ m.color }}</p>
-        <button id="rm{{ m.id }}">Remove</button> -->
 
-                        <div class="card card-box-top"
-                            style="background-color: rgb(153, 221, 242); width: 150px; height: 150px;"
-                            ondblclick="window.location='/useRoom/{{m.id}}';">
-
-                            <div class="card-body">
-                                <p class="card-title-main" style="font-size: large; display: inline">{{ m.name }}
-                                <div class="dropdown" style="display: inline; float: right;">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="">
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                        <a class="dropdown-item" href="#">Change</a>
-                                        <a id="rm{{ m.id }}" class="dropdown-item" href="#">Delete</a>
-
-                                    </div>
-                                </div>
-                                </p>
-                                <p class="card-text"
-                                    style="font-family: 'Courier New', Courier, monospace; font-weight: 800;">{{
-                                    m.description }}</p>
+                    <h1>Add room</h1>
+                    <input type="text" id="add_room_id" placeholder="Room ID" required>
+                    <input type="password" id="add_room_password" placeholder="Room Password" required>
+                    <h1>or</h1>
+                    <input type="text" id="add_room_link" placeholder="Room Link" required>
+                    <button type="submit" id="add">Add Room</button>
 
 
-                            </div>
-                        </div>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for m in messages %}
+                    <P style="color: red;"> {{ m }}</P>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
 
-                    </div>
+
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            $("#rm{{ m.id }}").click(function () {
-                                console.log(123)
-                                $.post("remove_room",
+                            $("#add").click(function () {
+                                var add_room_id = $("#add_room_id").val()
+                                var add_room_password = $("#add_room_password").val()
+                                var add_room_link = $("#add_room_link").val()
+                                $.post("add_room",
                                     {
-                                        remove_room_id: '{{ m.id }}',
+                                        add_room_id: add_room_id,
+                                        add_room_password: add_room_password,
+                                        add_room_link: add_room_link
                                     },
                                 )
                                     .done(function (result) {
@@ -681,7 +714,60 @@
                             });
                         });
                     </script>
-                    {% endfor %}
+
+                    <h3>Room to join</h3>
+
+                    <div class="rooms" style="overflow-y: scroll;" id="notes">
+
+                        {% for m in all_rooms_attribute %}
+
+                        <a href="#" style="text-decoration: none; color: #000" data-toggle="modal"
+                            data-target="#room_{{ m.id }}">
+                            <div class="room_made" style="background-color: {{ m.color }};">
+                                <p style="font-size: 20px; margin-top: 10px;">
+                                    {{ m.name }}
+                                </p>
+                            </div>
+                        </a>
+                        <div class="modal fade" id="room_{{ m.id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle"> Vào phòng {{m.name}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{m.description}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            id="delete_note_{{ m[0] }}">Xoá</button>
+
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="window.location='/useRoom/{{m.id}}'">Vào</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $("#delete_note_{{ m[0] }}").click(function () {
+                                    $.post('delete_note', {
+                                        note_id: "{{ m[0] }}",
+                                    })
+
+                                })
+                            })
+
+                        </script>
+                        {% endfor%}
+
+
+
+                    </div>
                 </div>
             </div>
         </div>

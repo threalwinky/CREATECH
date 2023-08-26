@@ -2680,11 +2680,5 @@ textarea[type=text] {
       background-color: var(--main-color);
    }
 
-   .chat {
-      float: none;
-      margin-top: 4vh;
-      width: 19vh;
-      height: 19vh;
-      background-color: aqua;
-   }
+   
 }

@@ -1,10 +1,11 @@
-{% extends "base_main.html" %}
+{% extends "base_room.html" %}
 
 {% block title %}Createen{% endblock %}
 
 {% block content %}
 
-<p style="font-size: x-large; display: inline;">Time : </p>
+<div style="margin-left: 100px;">
+  <p style="font-size: x-large; display: inline;">Time : </p>
 <div id="time" style="display: inline;">
   <p style="font-size: x-large; display: inline;">60</p>
 </div>
@@ -55,8 +56,8 @@
   </div>
 </div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="challenge_btn">
-    Launch demo modal
+<button type="button" data-toggle="modal" data-target="#exampleModal" id="challenge_btn">
+    
   </button>
   
   <!-- Modal -->
@@ -149,6 +150,9 @@
         })
     })
 </script>
+</div>
+
+
 
 
 {% endblock %}

@@ -452,12 +452,12 @@ def create_room():
     if (request.method == "POST"):
         room_name = request.form["room_name"]
         room_color = request.form["room_color"]
-        room_description = request.form["room_description"]
+        room_content = request.form["room_content"]
         found_user = User.query.filter_by(username=username).first()
         random_room_password = ''.join(random.choice(
             string.ascii_letters + string.digits) for _ in range(10))
         room = Room(room_name, found_user.id, random_room_password,
-                    room_color, room_description)
+                    room_color, room_content)
         db.session.add(room)
         db.session.commit()
         room_id = str(room.id)

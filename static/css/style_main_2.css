@@ -1397,7 +1397,7 @@ section {
 
 
 body {
-   background-color: #ffe59c;
+   background-color: rgba(217, 219, 206, 255);
 }
 
 nav {
@@ -2620,6 +2620,31 @@ textarea[type=text] {
 }
 
 .note_made p {
+   margin-left: 20px;
+   margin-top: 20px;
+   font-family: sans-serif;
+   font-weight: 600;
+}
+
+.room_made {
+   display: flex;
+   margin-left: 10px;
+   margin-top: 10px;
+   border-radius: 20px;
+   height: 50px;
+   width: 400px;
+   background-color: #F74824;
+}
+
+.room_made_name {
+   font-family: sans-serif;
+   font-weight: 600;
+   text-align: left;
+   justify-content: center;
+   align-items: center;
+}
+
+.room_made p {
    margin-left: 20px;
    margin-top: 20px;
    font-family: sans-serif;
