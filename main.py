@@ -100,7 +100,7 @@ template_format = {
     'time_interval' : calendar()
 }
 
-print("Let's chat! (type 'quit' to exit)")
+
 def get_emilia_response(message):
     message = tokenize(message)
     reply = ''
@@ -385,7 +385,18 @@ def dashboard():
         notes = []
         for i in range(1, len(snotes)):
             notes.append(snotes[i].split("^^^^"))
-        return render_template('dashboard.html', username=username, name=name, photo_url=photo_url, email=email, l=math_real, notes=notes, notes_cnt = len(notes))
+        username = session["username"]
+        found_user = User.query.filter_by(username=username).first()
+        all_rooms = found_user.room.split("####")
+        all_rooms_attribute = []
+        for room in all_rooms:
+            all_rooms_attribute.append(Room.query.filter_by(id=room).first())
+        if all_rooms[0] == '':
+            return render_template('dashboard.html', all_rooms_attribute=all_rooms_attribute[1:-1] ,username=username, name=name, photo_url=photo_url, email=email, l=math_real, notes=notes, notes_cnt = len(notes))
+            return render_template('join_room.html', all_rooms_attribute=all_rooms_attribute[1:-1], photo_url=found_user.photo_url, name=found_user.name)
+        return render_template('dashboard.html',all_rooms_attribute=all_rooms_attribute , username=username, name=name, photo_url=photo_url, email=email, l=math_real, notes=notes, notes_cnt = len(notes))
+        return render_template('join_room.html', all_rooms_attribute=all_rooms_attribute, photo_url=found_user.photo_url, name=found_user.name)
+        
     else:
         return redirect(url_for("log_in"))
 
@@ -413,7 +424,7 @@ def create_note():
         note_id = len(notes)
         found_user.note = found_user.note + "$$$$" + str(note_id) + "^^^^" + note_color + "^^^^" + note_content + "^^^^" + note_name
         db.session.commit()
-        print(note_color, note_content, note_name, note_id)
+
     return "True"
 
 @app.route('/delete_note', methods=["POST", "GET"])
@@ -430,7 +441,7 @@ def delete_note():
                 notes += "$$$$" + snotes[i]
         found_user.note = notes
         db.session.commit()
-        print(note_id)
+
     return "True"
 # Room Handling
 
@@ -583,7 +594,7 @@ def use_room(room_id):
     tmp2 = []
     for i in range(1, len(tmp)):
         tmp2.append(tmp[i].split("^^^^"))
-    print(tmp)
+
     return render_template('room.html', data=found_room, photo_url=found_user.photo_url, room_link=room_link, user_id=str(found_user.id), 
                            chat=tmp2, name=found_user.name, ranking=ranking_real)
 
@@ -595,7 +606,7 @@ def challenge(room_id):
     found_room = Room.query.filter_by(id=room_id).first()
     with open('challenge_question.json') as json_file:
         question = json.load(json_file)
-    print(type(question))
+
     return render_template('challenge.html', photo_url=found_user.photo_url, name=found_user.name, question=question, data=found_room)
 
 
