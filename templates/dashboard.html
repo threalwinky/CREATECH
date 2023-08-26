@@ -676,6 +676,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+<<<<<<< HEAD
 
                     <h1>Add room</h1>
                     <input type="text" id="add_room_id" placeholder="Room ID" required>
@@ -768,6 +769,9 @@
 
 
                     </div>
+=======
+                    ...
+>>>>>>> 8421a6d412614de98c916297ee58b682adb44482
                 </div>
             </div>
         </div>
@@ -812,24 +816,24 @@
                         $("#question").text(q[q_cnt][0])
                         q_cnt++
                     })
-                $(document).ready(function () {
-
+                $(document).ready(function(){
+                    
                 })
                 $("#question_submit").click(function () {
                     question = $("#question").text()
                     reply = $("#inp").val()
-                    $("#inp").val("")
-                    if (q[q_cnt - 1][1] == reply) {
-                        $("#question").html(question + '\nĐúng rùi').wrap('<pre />');
+		    $("#inp").val("")
+                    if (q[q_cnt - 1][1] == reply){
+                        $("#question").html(question+'\nĐúng rùi').wrap('<pre />');
                     }
-                    else $("#question").html(question + '\nSai rùi đáp án là ' + q[q_cnt - 1][1]).wrap('<pre />');
-                    var x = setTimeout(function () {
-
+                    else $("#question").html(question+'\nSai rùi đáp án là '+ q[q_cnt - 1][1]).wrap('<pre />');
+                    var x = setTimeout(function(){
+                        
                         console.log(q[q_cnt - 1][1] == reply)
                         $("#question").text(q[q_cnt][0])
                         q_cnt++
                     }, 3000)
-
+                    
                 })
 
             </script>
@@ -1230,113 +1234,55 @@
 
                     <div id="chat_2"
                         style="visibility: hidden ;float: right ;margin-top: 10px ;height: 30px; width: 160px; background-color: #ffffff; border-top-left-radius: 20px;border-bottom-left-radius: 20px ;">
-                        <a href="#" style="text-decoration: none; color: #000;">
-                            <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
-                                Trắc nghiệm
-                            </p>
-                        </a>
-
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            Trắc nghiệm
+                        </p>
                     </div>
-
-
-
-
                     <div style="visibility: hidden;margin-top: 10px ;height: 30px; width: 160px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;"
                         id="chat_1">
-                        <a href="#" style="text-decoration: none; color: #000;">
-                            <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
-                                Tự luận
-                            </p>
-                        </a>
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            Tự luận
+                        </p>
                     </div>
                     <div id="chat_3"
                         style="visibility: hidden; align-items: center; ;margin-top: 10px ;height: 30px; width: 190px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;">
-                        <a href="#" style="text-decoration: none; color: #000;">
-                            <p
-                                style="text-align: center;justify-content: center; font-family: sans-serif; font-weight: 500;">
-                                Thắc mắc tâm lý
-                            </p>
-                        </a>
+                        <p
+                            style="text-align: center;justify-content: center; font-family: sans-serif; font-weight: 500;">
+                            Thắc mắc tâm lý
+                        </p>
                     </div>
-
                     <div id="chat_4"
                         style="visibility: hidden;float: right ;margin-top: 10px ;height: 30px; width: 200px; background-color: #ffffff; border-top-left-radius: 20px;border-bottom-left-radius: 20px ;">
-                        <a href="#" style="text-decoration: none; color: #000;">
-                            <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
-                                Bài kiểm tra khó quá ?
-                            </p>
-                        </a>
+                        <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
+                            <span class="new-question">Bài kiểm tra khó quá ?</span>
+                        </p>
                     </div>
-                    <div style="background-color: #fefdd5; height: 22vh;width: 100%; margin-top: 10%;; position: absolute;overflow-y: scroll; visibility: hidden;"
-                        id="chats">
 
-                    </div>
                     <div class="input-group mb-3"
-                        style="margin-top: 11%; width: 330px; margin-left: 18px; float: right;" id="chat_box">
+                        style="margin-top: 10%; width: 330px; margin-left: 18px; float: right;" id="chat_box">
                         <input type="text" class="form-control" placeholder="Tin nhắn" aria-label="Recipient's username"
                             aria-describedby="basic-addon2" id="chat_input" style="visibility: hidden; width: 0px;">
                         <div class="input-group-append" style="height: 50px;">
                             <button id="chat_button" class="btn btn-outline-secondary" type="button"
-                                style="background-color: #fff; height: 50px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;"
-                                id="chat_button">
+                                style="background-color: #fff; height: 50px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
                                 <img src="{{ url_for('static', filename='img/icon/arrow.png')}}"
                                     style="height: 40px; width: 40px;">
                             </button>
                         </div>
                     </div>
-                    <script>
-                        $("#chat_2").click(function () {
-                            $("#chat_input").val("Trắc nghiệm")
-                            $("#chat_button").click()
-                        })
-                        $("#chat_1").click(function () {
-                            $("#chat_input").val("Tự luận")
-                            $("#chat_button").click()
-                        })
-                        $("#chat_3").click(function () {
-                            $("#chat_input").val("Thắc mắc tâm lý")
-                            $("#chat_button").click()
-                        })
-                        $("#chat_4").click(function () {
-                            $("#chat_input").val("Bài kiểm tra khó quá")
-                            $("#chat_button").click()
-                        })
 
-                    </script>
-                    <script>
-                        $("#chat_button").click(function () {
-                            chat_input = $("#chat_input").val()
-                            $("#chat_input").val("")
-                            console.log(chat_input)
-                            $.post('get_emilia_message', {
-                                msg: chat_input,
-                            }).done(function (data) {
-                                userHtml = `
-                                <div 
-                                    style="align-items: center; ;margin-top: 50px ;height: 30px; width: 190px; background-color: #ffffff; border-top-right-radius: 20px;border-bottom-right-radius: 20px ;">
-                                    <p
-                                        style="text-align: center;justify-content: center; font-family: sans-serif; font-weight: 500;">
-                                        ` + data[0] + `
-                                    </p>
-                                </div>
-                                `
-                                botHtml = `
-                                <div 
-                                    style="float: right ;margin-top: 10px ;height: 30px; width: 200px; background-color: #ffffff; border-top-left-radius: 20px;border-bottom-left-radius: 20px ;">
-                                    <p style="font-family: sans-serif; font-weight: 500; text-align: center;">
-                                        ` + chat_input + `
-                                    </p>
-                                </div>
-                                `
-                                $("#chats").append(botHtml)
-                                $("#chats").append(userHtml)
-                            })
-                        })
-                    </script>
                 </div>
             </div>
 
             <script>
+                $('.new-question').on('click', function() {
+                    // generate new question
+                    q_cnt++
+                    $("#question").html(q[q_cnt - 1][0])
+                    $('#inp').val('')
+
+                });
+
                 $(document).ready(function () {
                     $("#chat").on("mouseover", function () {
                         $("#clock_input").css({ "visibility": "hidden", })
@@ -1344,10 +1290,8 @@
                         $("#chat_2").css({ "visibility": "unset", })
                         $("#chat_3").css({ "visibility": "unset", })
                         $("#chat_4").css({ "visibility": "unset", })
-
                         $("#clock").css({ "height": "20vh", "transition-duration": "0.5s" })
                         $("#chat").css({ "height": "60vh", "margin-top": "-20vh", "transition-duration": "0.5s" })
-                        $("#chats").css({ "visibility": "unset", })
                         $(".container-clock").css({ "margin-left": "2%", "transition-duration": "0.5s" })
 
                         $(".circular_progress").css({ "height": "120px", "width": "120px", "transition-duration": "0.5s" })
@@ -1357,7 +1301,6 @@
 
                     })
                     $("#chat").on("mouseleave", function () {
-                        $("#chats").css({ "visibility": "hidden", })
                         $("#clock").css({ "height": "40vh" })
                         $("#chat").css({ "height": "40vh", "margin-top": "0vh", "transition-duration": "0.5s" })
                         $(".container-clock").css({ "margin-left": "4%", "transition-duration": "0.5s" })
